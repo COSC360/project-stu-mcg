@@ -3,17 +3,18 @@
     <body>
         <head>
             <link rel="stylesheet" href="css/login.css">
+            <script src="scripts/signup-validation.js"></script>
         </head>
         <header>
             <!--Php to insert header on all pages-->
         </header>
         <main>
-            <form id="login_form" class="form" action="login/login-access.php" method="post">
+            <form id="login_form" class="form" action="signup.php" method="post">
                 <div class="form_div">
                     <label>Username</label>
-                    <input class="field" type="text" placeholder="Username" autofocus>
+                    <input class="field" type="text" name = "username" placeholder="Username" autofocus>
                     <label>Email:</label>
-                    <input id="pass" class="field" placeholder="Email">
+                    <input id="pass" class="field" type="email" placeholder="Email">
                     <label>Password:</label>
                     <input id="pass" class="field" type="password" placeholder="Password">                    
                     <label>Confirm Password:</label>
