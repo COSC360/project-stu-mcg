@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <body>
+        <head>
+            <link rel="stylesheet" href="css/login.css">
+        </head>
+        <header>
+            <!--Php to insert header on all pages-->
+        </header>
+        <main>
+            <form id="login_form" class="form" action="login/login-access.php" method="post">
+                <div class="form_div">
+                    <label>Username</label>
+                    <input class="field" type="text" placeholder="Username" autofocus>
+                    <label>Email:</label>
+                    <input id="pass" class="field" placeholder="Email">
+                    <label>Password:</label>
+                    <input id="pass" class="field" type="password" placeholder="Password">                    
+                    <label>Confirm Password:</label>
+                    <input id="pass" class="field" type="password" placeholder="Confirm Password">
+                    <button class="submit" type="submit" form="login_form">Sign-up</button>
+                </div>
+                <div class="info_div">
+                    <p>Not yet registered? <a href="#">Sign-up!</a></p>
+                </div>
+            </form>
+        </main>
+    </body>
+</html>
