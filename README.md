@@ -2,8 +2,13 @@
 
 ### Mac Vibert and Stu McGorman
 
-## Outdoor discussion forum
+## Milestone 2
 
+[click here](pages.md)
+
+## Milestone 1
+
+## Outdoor discussion forum
 
 We are going to create a website that allows users to engage in conversations and discussions about outdoor activities, trips, places and anything else outdoor related. 
 
