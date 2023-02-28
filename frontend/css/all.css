@@ -1,4 +1,8 @@
 body {
+    background-image: url("../img/mountains.png");
+    background-position: center top;
+    background-size: 105%;
+    background-repeat: no-repeat;
     font-family: 'Montserrat', sans-serif;
     color: #ADB7AD;
 }
