@@ -1,0 +1,28 @@
+main {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 75vh;
+    width: 100%;
+    margin-top: 3em
+}
+
+.mainDiv{
+    width: 500px;
+    padding: 40px;
+    border-radius: 8px;
+    background-color: #336033;
+    font-family: 'Montserrat', sans-serif;
+    box-shadow: 5px 5px 10px rgb(0,0,0,0.3);
+}
+
+.profilePic{
+    max-width : 200px;
+    max-height: 200px;
+    float: right;
+    margin-left: 20px;
+}
+
+#editLink{
+    float: right;
+}

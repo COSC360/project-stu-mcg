@@ -4,15 +4,6 @@ body {
     background-size: 105%;
     background-repeat: no-repeat;
 }
-a{
-    color: #ADB7AD;
-}
-a:hover{
-    color: white;
-}
-p{
-    color: #ADB7AD;
-}
 main {
     display: flex;
     align-items: center;

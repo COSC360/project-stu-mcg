@@ -1,0 +1,14 @@
+body {
+    font-family: 'Montserrat', sans-serif;
+    color: #ADB7AD;
+}
+
+a{
+    color: #ADB7AD;
+}
+a:hover{
+    color: white;
+}
+p{
+    color: #ADB7AD;
+}
