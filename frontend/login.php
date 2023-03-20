@@ -36,9 +36,15 @@
             // Execute SQL and error check
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                if ($result->num_rows == 1) {
+                if ($result->num_rows == 1) { 
+                    //I think this saves their id to the session so you can confirm they're logged in still on other pages. 
+                    session_start();
+                    $row = $result->fetch_assoc(); 
+                    $username = $row['username'];
+                    $_SESSION['username'] = $username;
+
                     // change link to homepage when ready
-                    header("Location: index.php");
+                    header("Location: home.php");
                     exit;
                 } else {
                     echo "Incorrect login or password";
