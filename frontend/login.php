@@ -36,7 +36,7 @@
             // Execute SQL and error check
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                if ($result->num_rows == 1) { 
+                if ($result->num_rows == 1) { //just check if an entry exists for given credentials
                     //I think this saves their id to the session so you can confirm they're logged in still on other pages. 
                     session_start();
                     $row = $result->fetch_assoc(); 

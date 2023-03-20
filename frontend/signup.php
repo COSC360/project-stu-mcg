@@ -33,7 +33,8 @@
 			// Prepared stmnt
 			$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); //Question marks for bind_param params
 			$stmt->bind_param("sss", $username, $email, $password);
-
+			//should probs check if username already exists
+			
 			// Execute SQL statement and check for errors
 			if ($stmt->execute()) {
 			    echo "Signup successful!";
