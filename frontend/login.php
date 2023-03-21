@@ -11,6 +11,7 @@
         </header>
         <main>
         <?php
+        $pwerror = '';
         // gotta check if form was submitted
         if ($_SERVER["REQUEST_METHOD"] == "POST") {
             // user inputs
@@ -47,7 +48,7 @@
                     header("Location: home.php");
                     exit;
                 } else {
-                    echo "Incorrect login or password";
+                    $pwerror = "Incorrect username or password";
                 }
             } else {
                 echo "Error: " . $stmt->error;
@@ -63,6 +64,7 @@
                     <input class="field" type="text" name="login" placeholder="Email or Username" autofocus>
                     <label>Password:</label>
                     <input id="pass" class="field" type="password" name="password" placeholder="Password">
+                    <?php echo "<p>$pwerror</p>"; ?>
                     <button class="submit" type="submit" form="login_form">Login</button>
                 </div>
                 <div class="info_div">
