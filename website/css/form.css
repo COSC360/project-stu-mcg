@@ -23,7 +23,7 @@ main {
     text-align: center;
     margin-top: 20px;
 }
-.field{
+.field {
     width: 100%;
     border-radius: 6px;
     border-style: solid;
@@ -34,6 +34,7 @@ main {
     margin-bottom: 20px;
     font-family:'Montserrat', sans-serif;
 }
+
 button {
     border-style: none;
     border-radius: 5px;
