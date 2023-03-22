@@ -6,7 +6,7 @@
             <link rel="stylesheet" href="css/form.css">
             <script src="scripts/login-validation.js"></script>
         </head>
-            <?php include('header.php'); ?>
+        <?php include('header.php'); ?>
         <main>
         <?php
         $pwerror = '';

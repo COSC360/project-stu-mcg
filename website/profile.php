@@ -4,15 +4,14 @@
         <head>
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/profile.css">
-
         </head>
         <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
-            <?php 
-                if(isset($_SESSION['username'])){
-                    echo '<h1>'. $_SESSION['username'].'</h1>';
-                }
+                <?php 
+                    if(isset($_SESSION['username'])){
+                        echo '<h1>'. $_SESSION['username'].'</h1>';
+                    }
                 ?>
                 <img class="profilePic" src="img/blank-profile-picture-973460_1280.png">
                 <h2>Bio:</h2>

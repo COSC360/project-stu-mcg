@@ -5,8 +5,9 @@
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/threads.css">
         </head>
-            <?php include('header.php'); ?>
-    <main>
-        
-    </main>
+        <?php include('header.php'); ?>
+        <main>
+            
+        </main>
+    </body>
 </html>
