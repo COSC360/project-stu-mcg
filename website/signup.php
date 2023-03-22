@@ -21,24 +21,25 @@
 			// check if username already exists
 			
   			$stmt = $conn->prepare($sql = "SELECT * FROM users WHERE username = ? OR email = ?;");
-			$stmt->bind_param('ss', $newUserData['username'], $newUserData['email']);
+			$stmt->bind_param('ss', $username, $email);
 			$stmt->execute();
 			$result = $stmt->get_result();
 			if ($result->fetch_assoc()) {
-				//handle username already exists error here
+				$errorMessage = "Username/email already taken";
 			}
+            else{
+                // Prepared stmnt
+                $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); //Question marks for bind_param params
+                $stmt->bind_param("sss", $username, $email, $password);
 
-			// Prepared stmnt
-			$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); //Question marks for bind_param params
-			$stmt->bind_param("sss", $username, $email, $password);
-
-			// Execute SQL statement and check for errors
-			if ($stmt->execute()) {
-					//route to login page
-                    header("Location: login.php");
-			} else {
-			    echo "Error: " . $stmt->error;
-			}
+                // Execute SQL statement and check for errors
+                if ($stmt->execute()) {
+                        //route to login page
+                        header("Location: login.php");
+                } else {
+                    echo "Error: " . $stmt->error;
+                }
+            }
 
 			// close db connection
 			$conn->close();
@@ -54,6 +55,7 @@
                     <input id="pass" class="field" type="password" name = "password" placeholder="Password">                    
                     <label>Confirm Password:</label>
                     <input id="pass" class="field" type="password" placeholder="Confirm Password">
+                    <?php echo "<p>$errorMessage</p>"; ?>
                     <button class="submit" type="submit" form="login_form">Sign-up</button>
                 </div>
             </form>
