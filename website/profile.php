@@ -31,6 +31,9 @@
                 <?php
                     if(isset($_POST['logout'])){
                         unset($_SESSION['username']);
+                        if(isset($_SESSION['isAdmin'])){
+                            unset($_SESSION['isAdmin']);
+                        }
                         header("Location: login.php");
                         exit();
                     }
