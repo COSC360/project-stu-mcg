@@ -9,6 +9,7 @@
             <?php include('header.php'); ?>
         <main>
         <?php
+        $errorMessage = "";
         // gotta check if form was submitted
 		if ($_SERVER["REQUEST_METHOD"] == "POST") {
 			// user inputs
