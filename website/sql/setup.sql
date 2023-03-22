@@ -1,3 +1,13 @@
+CREATE DATABASE cosc360project;
+
+USE cosc360project;
+
+CREATE USER IF NOT EXISTS 'cosc360user'@'localhost' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON cosc360project.* TO 'cosc360user'@'localhost';
+CREATE USER IF NOT EXISTS 'cosc360user'@'%' IDENTIFIED BY '1234';
+GRANT ALL PRIVILEGES ON cosc360project.* TO 'cosc360user'@'%';
+
+
 CREATE TABLE users (
     username varchar(63) NOT NULL,
     firstName varchar(63) NOT NULL,
@@ -36,4 +46,3 @@ CREATE TABLE `images`(
     image BLOB NOT NULL,
     PRIMARY KEY (imageId)
 );
-

@@ -13,9 +13,9 @@
             <a 
                 <?php 
                 if(isset($_SESSION['username'])){
-                    echo 'href="profile.php">', $_SESSION['username'];
+                    echo 'href="profile.php">'. $_SESSION['username'];
                 } else{
-                    echo 'href="login.php">','Login';
+                    echo 'href="login.php">'.'Login';
                 }
                 ?>
             </a>
