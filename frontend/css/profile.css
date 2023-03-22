@@ -8,6 +8,7 @@ main {
 }
 
 .mainDiv{
+    margin-top: 10em;
     width: 500px;
     padding: 40px;
     border-radius: 8px;

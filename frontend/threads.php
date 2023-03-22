@@ -7,3 +7,7 @@
             <script src="scripts/signup-validation.js"></script>
         </head>
             <?php include('header.php'); ?>
+    <main>
+        
+    </main>
+</html>

@@ -4,10 +4,9 @@
         <head>
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/profile.css">
+
         </head>
-        <header>
-            <!--Php to insert header on all pages-->
-        </header>
+        <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
                 <h1>User1234</h1>
