@@ -18,10 +18,19 @@
 
             include('dbConnection.php');
 
+			// check if username already exists
+			
+  			$stmt = $conn->prepare($sql = "SELECT * FROM users WHERE username = ? OR email = ?;");
+			$stmt->bind_param('ss', $newUserData['username'], $newUserData['email']);
+			$stmt->execute();
+			$result = $stmt->get_result();
+			if ($result->fetch_assoc()) {
+				//handle username already exists error here
+			}
+
 			// Prepared stmnt
 			$stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); //Question marks for bind_param params
 			$stmt->bind_param("sss", $username, $email, $password);
-			//should probs check if username already exists
 
 			// Execute SQL statement and check for errors
 			if ($stmt->execute()) {
