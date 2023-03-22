@@ -30,7 +30,10 @@
                     $row = $result->fetch_assoc(); 
                     $username = $row['username'];
                     $_SESSION['username'] = $username;
-                    
+                    $isAdmin = $row['isAdmin'];
+                    if($isAdmin == 1){
+                        $_SESSION['isAdmin'] = True;
+                    }
                     // change link to homepage when ready
                     header("Location: threads.php");
                     exit;

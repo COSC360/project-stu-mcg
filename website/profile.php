@@ -9,7 +9,11 @@
         <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
-                <h1>User1234</h1>
+            <?php 
+                if(isset($_SESSION['username'])){
+                    echo '<h1>'. $_SESSION['username'].'</h1>';
+                }
+                ?>
                 <img class="profilePic" src="img/blank-profile-picture-973460_1280.png">
                 <h2>Bio:</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ante turpis, molestie in orci eu, aliquam sagittis augue. Pellentesque tincidunt.</p>
