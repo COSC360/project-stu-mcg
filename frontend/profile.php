@@ -13,6 +13,7 @@
                 <img class="profilePic" src="img/blank-profile-picture-973460_1280.png">
                 <h2>Bio:</h2>
                 <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ante turpis, molestie in orci eu, aliquam sagittis augue. Pellentesque tincidunt.</p>
+                <a id = "editLink" href="#">edit profile<a>
                 <h2>Location: Kelowna BC</h2>
                 <h2>Post Count: 3333</h2>
                 <h2>Recent threads:</h2>
@@ -23,8 +24,16 @@
                     <li><a href="#">Thread 4</a></li>
                     <li><a href="#">Thread 5</a></li>
                 </ul>
-                <!-- will only show up if this user is logged in -->
-                <a id = "editLink" href="#">edit profile<a>
+                <?php
+                    if(isset($_POST['logout'])){
+                        unset($_SESSION['username']);
+                        header("Location: login.php");
+                        exit();
+                    }
+                ?>
+                <form method="post">
+                    <button type="submit" class="logout" name="logout">Logout</button>
+                </form>
             </div>
         </main>
     </body>

@@ -8,7 +8,7 @@ main {
 }
 
 .mainDiv{
-    margin-top: 10em;
+    margin-top: 12em;
     width: 500px;
     padding: 40px;
     border-radius: 8px;
@@ -26,4 +26,21 @@ main {
 
 #editLink{
     float: right;
+}
+.logout {
+    border-style: none;
+    border-radius: 5px;
+    background-color: white;
+    color: #336033;
+    font-size: .99em;
+    font-weight: 700;
+    padding: 8px 20px;
+    font-family: 'Montserrat', sans-serif;
+    letter-spacing: .8px;
+    display: block;
+    margin: auto;
+    margin-top: 10px;
+    box-shadow: 2px 2px 5px rgb(0,0,0,0.2);
+    cursor: pointer;
+    margin-top: 3em;
 }

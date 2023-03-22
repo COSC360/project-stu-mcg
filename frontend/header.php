@@ -9,9 +9,17 @@
         <li><a href="#">Home</a></li>
         <li><a href="#">Topics</a></li>
         <li><a href="threads.php">Threads</a></li>
-        <li><a <?php 
-                if(isset($_SESSION['username'])){echo 'href="profile.php">', $_SESSION['username'];} else{echo 'href="login.php">','Login';}
-                ?></a></li>
+        <li>
+            <a 
+                <?php 
+                if(isset($_SESSION['username'])){
+                    echo 'href="profile.php">', $_SESSION['username'];
+                } else{
+                    echo 'href="login.php">','Login';
+                }
+                ?>
+            </a>
+        </li>
         <li><input type="text" placeholder="Search"></li>
     </ul>
 </header> 
