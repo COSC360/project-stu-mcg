@@ -10,12 +10,12 @@ GRANT ALL PRIVILEGES ON cosc360project.* TO 'cosc360user'@'%';
 
 CREATE TABLE users (
     username varchar(63) NOT NULL,
-    firstName varchar(63) NOT NULL,
-    lastName varchar(63) NOT NULL,
+    firstName varchar(63),
+    lastName varchar(63),
     email varchar(63) NOT NULL,
     password varchar(127) NOT NULL,
-    profileImage BLOB NOT NULL,
-    isAdmin boolean NOT NULL,
+    profileImage BLOB,
+    isAdmin boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (username),
     UNIQUE KEY (email)
 );
