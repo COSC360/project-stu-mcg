@@ -6,9 +6,7 @@
             <link rel="stylesheet" href="css/form.css">
             <script src="scripts/login-validation.js"></script>
         </head>
-        <header>
-            <?php include('header.html'); ?>
-        </header>
+            <?php include('header.php'); ?>
         <main>
         <?php
         $pwerror = '';
@@ -39,13 +37,12 @@
                 $result = $stmt->get_result();
                 if ($result->num_rows == 1) { //just check if an entry exists for given credentials
                     //I think this saves their id to the session so you can confirm they're logged in still on other pages. 
-                    session_start();
                     $row = $result->fetch_assoc(); 
                     $username = $row['username'];
                     $_SESSION['username'] = $username;
-
+                    
                     // change link to homepage when ready
-                    header("Location: home.php");
+                    header("Location: threads.php");
                     exit;
                 } else {
                     $pwerror = "Incorrect username or password";

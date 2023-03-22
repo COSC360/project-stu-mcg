@@ -6,9 +6,7 @@
             <link rel="stylesheet" href="css/form.css">
             <script src="scripts/signup-validation.js"></script>
         </head>
-        <header>
-            <?php include('header.html'); ?>
-        </header>
+            <?php include('header.php'); ?>
         <main>
         <?php
         // gotta check if form was submitted
