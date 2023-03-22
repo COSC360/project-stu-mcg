@@ -8,6 +8,12 @@
         </head>
             <?php include('header.php'); ?>
     <main>
-        
+        <?php
+            if(isset($_SESSION['username'])){
+                echo ("<a href='createThread.php'>Create a thread</a>");
+            } else{
+                echo ("you must be loggeed in to create a thread");
+            }
+        ?>
     </main>
 </html>

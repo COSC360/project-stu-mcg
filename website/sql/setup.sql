@@ -23,7 +23,7 @@ CREATE TABLE users (
 CREATE TABLE threads (
     threadId INT NOT NULL AUTO_INCREMENT,
     threadTitle varchar(255) NOT NULL,
-    threadDate DATE NOT NULL,
+    threadDate DATETIME NOT NULL,
     threadAuthor varchar(63),
     threadText varchar(8191) NOT NULL,
     PRIMARY KEY (threadId),
@@ -33,7 +33,7 @@ CREATE TABLE threads (
 CREATE TABLE comments (
     commentId INT NOT NULL AUTO_INCREMENT,
     thread INT NOT NULL,
-    commentDate DATE NOT NULL,
+    commentDate DATETIME NOT NULL,
     commentAuthor varchar(63),
     commentText varchar(8191),
     PRIMARY KEY (commentId),
