@@ -59,12 +59,8 @@
                 //         mysqli_query($conn, $sql);
                 //     }
                 // }
-
-                // Close the database connection
                 $conn->close();
-
                 ?>
-
             </div>
         </main>
     </body>
