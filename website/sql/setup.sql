@@ -16,6 +16,7 @@ CREATE TABLE users (
     password varchar(127) NOT NULL,
     profileImage BLOB,
     isAdmin boolean NOT NULL DEFAULT 0,
+    enabled boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (username),
     UNIQUE KEY (email)
 );
@@ -47,3 +48,6 @@ CREATE TABLE images (
     image BLOB NOT NULL,
     PRIMARY KEY (imageId)
 );
+
+-- admin user
+INSERT INTO users VALUES ('admin', 'stu', 'mcg', 'admin@email.com', 'password', 'NULL', '', '');
