@@ -25,7 +25,7 @@
 
             include('dbConnection.php');
 
-            $stmt = $conn->prepare("INSERT INTO threads (threadTitle, threadDate, threadAuthor, threadText) VALUES (?, NOW(), ?, ?)"); //Question marks for bind_param params
+            $stmt = $conn->prepare("INSERT INTO threads (threadTitle, threadDate, lastPost, threadAuthor, threadText) VALUES (?, NOW(), NOW(), ?, ?)"); //Question marks for bind_param params
             $stmt->bind_param("sss", $title, $_SESSION['username'], $text);
 
             // Execute SQL statement and check for errors
