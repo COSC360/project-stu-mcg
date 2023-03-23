@@ -47,7 +47,7 @@
                     <label>Message:</label>
                     <textarea class="field" name="message" rows="10" placeholder="Your message here" style="display:block"></textarea>
                     <div display="block">
-                        <button class="back" type="button" name="createThreadForm" style="display:inline" onclick="goBack()">Cancel</button>
+                        <button class="back" type="button" name="back" style="display:inline" onclick="goBack()">Cancel</button>
                         <button class="submit" type="submit" form="createThreadForm" style="display:inline">Post</button>
                     </div>
                 </div>

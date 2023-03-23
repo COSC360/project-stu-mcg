@@ -31,18 +31,18 @@ CREATE TABLE threads (
     FOREIGN KEY(threadAuthor) REFERENCES users(username) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
-CREATE TABLE comments (
-    commentId INT NOT NULL AUTO_INCREMENT,
+CREATE TABLE replies (
+    replyId INT NOT NULL AUTO_INCREMENT,
     thread INT NOT NULL,
-    commentDate DATETIME NOT NULL,
-    commentAuthor varchar(63),
-    commentText varchar(8191),
-    PRIMARY KEY (commentId),
-    FOREIGN KEY (commentAuthor) REFERENCES users(username) ON UPDATE CASCADE ON DELETE SET NULL,
+    replyDate DATETIME NOT NULL,
+    replyAuthor varchar(63),
+    replyText varchar(8191),
+    PRIMARY KEY (replyId),
+    FOREIGN KEY (replyAuthor) REFERENCES users(username) ON UPDATE CASCADE ON DELETE SET NULL,
     FOREIGN KEY (thread) REFERENCES threads(threadId) ON UPDATE CASCADE ON DELETE CASCADE
 );
 
-CREATE TABLE `images`(
+CREATE TABLE images (
     imageId INT NOT NULL AUTO_INCREMENT,
     image BLOB NOT NULL,
     PRIMARY KEY (imageId)
