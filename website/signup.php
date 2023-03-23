@@ -31,7 +31,8 @@
             else{
                 // Prepared stmnt
                 $stmt = $conn->prepare("INSERT INTO users (username, email, password) VALUES (?, ?, ?)"); //Question marks for bind_param params
-                $stmt->bind_param("sss", $username, $email, $password);
+                $encrypedPW = md5($password);
+                $stmt->bind_param("sss", $username, $email, $encrypedPW);
 
                 // Execute SQL statement and check for errors
                 if ($stmt->execute()) {
@@ -45,7 +46,7 @@
 			$conn->close();
 		}
 	?>
-            <form id="login_form" class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post">
+            <form id="login_form" class="form" action="<?php echo htmlspecialchars($_SERVER["PHP_SELF"]); ?>" method="post" enctype="multipart/form-data">
                 <div class="form_div">
                     <label>Username</label>
                     <input class="field" type="text" name = "username" placeholder="Username" autofocus>
@@ -55,7 +56,9 @@
                     <input id="pass" class="field" type="password" name = "password" placeholder="Password">                    
                     <label>Confirm Password:</label>
                     <input id="pass" class="field" type="password" placeholder="Confirm Password">
-                    <?php echo "<p>$errorMessage</p>"; ?>
+                    <label>Profile Image (optional):</label>
+                    <input type="file" name="profileImage">
+                    <?php echo "<p>$errorMessage</p>"; ?> 
                     <button class="submit" type="submit" form="login_form">Sign-up</button>
                 </div>
             </form>

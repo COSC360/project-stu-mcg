@@ -20,7 +20,8 @@
 
             // Prepared stmnt
             $stmt = $conn->prepare("SELECT * FROM users WHERE (email = ? OR username = ?) AND password = ?");
-            $stmt->bind_param("sss", $login, $login, $password);
+            $encrypedPW = md5($password);
+            $stmt->bind_param("sss", $login, $login, $encrypedPW);
 
             // Execute SQL and error check
             if ($stmt->execute()) {

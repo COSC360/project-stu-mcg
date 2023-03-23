@@ -8,7 +8,15 @@ if(form != null){
     const email = form.querySelector("input[type='email']").value;
     const password = form.querySelector("input[type='password']").value;
     const confirmPassword = form.querySelectorAll("input[type='password']")[1].value;
+    const profileImage = form.querySelectorAll("input[type='file']")[0].value;
 
+    console.dir(profileImage)
+
+    if(profileImage !== "" && !isValidImageFile(profileImage)){
+      alert("Must upload a vaild image file.");
+      return;
+    }
+    
     if (username === "") {
       alert("Please enter a username.");
       return;
@@ -38,4 +46,9 @@ if(form != null){
 function isValidEmail(email) {
   const emailRegex = /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/;
   return email.match(emailRegex);
+}
+
+function isValidImageFile(file){
+  const imageFileRegex = /[^\s]+(.*?).(jpg|jpeg|png|gif|JPG|JPEG|PNG|GIF)$/; 
+  return file.match(imageFileRegex);
 }
