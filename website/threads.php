@@ -7,11 +7,12 @@
         </head>
             <?php include('header.php'); ?>
     <main>
+        <h1 class = 'title'>Threads</h1>
         <?php
             if(isset($_SESSION['username'])){
-                echo ("<a href='createThread.php'>Create a thread</a>");
+                echo ("<a class='button' href='createThread.php'>Create a thread</a>");
             } else{
-                echo ("you must be loggeed in to create a thread");
+                echo ("<p class = 'msg'> You must be loggeed in to create a thread </p>");
             }
             $pageNumber = 0;
             if(isset($_GET['page'])){
@@ -44,9 +45,9 @@
         <!-- next and back buttons -->
         <?php
         if($pageNumber > 0){
-            echo("<a href='threads.php?page=".$pageNumber - 1 ."'>Previous</a>");
+            echo("<a href='threads.php?page=".$pageNumber - 1 ."' class='np'>Previous</a>");
         }
-        echo("<a href='threads.php?page=".$pageNumber + 1 ."'>Next</a>");
+        echo("<a href='threads.php?page=".$pageNumber + 1 ."' class='np'>Next</a>");
         ?>
        
     </main>

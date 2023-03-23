@@ -9,7 +9,7 @@
         <li><a href="threads.php">Threads</a></li>
         <?php 
             if(isset($_SESSION['isAdmin'])){
-                echo '<li><a href="admin.php">Admin</a></li>';
+                echo '<li><a href="admin.php">Manage Users</a></li>';
             }
         ?>
         <li>
