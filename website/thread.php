@@ -8,37 +8,38 @@
             <?php include('header.php'); ?>
     <main>
         <?php
-            if(isset($_SESSION['username'])){
-                echo ("<a href='createThread.php'>Create a thread</a>");
-            } else{
-                echo ("you must be loggeed in to create a thread");
+            if(!isset($_GET['id'])){
+                die("null thread");
             }
+            $threadId = $_GET['id'];
             $pageNumber = 0;
             if(isset($_GET['page'])){
                 $pageNumber = $_GET['page'];
             }
             include("dbConnection.php");
-            $stmt = $conn->prepare("SELECT * FROM threads ORDER BY lastPost DESC LIMIT 10 OFFSET ?");
-            $offset = $pageNumber * 10;
-            $stmt->bind_param("d", $offset);
+            $stmt = $conn->prepare("SELECT * FROM threads WHERE threadId = ?");
+            $stmt->bind_param("d", $threadId);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                while($thread = $result->fetch_assoc()){
-                    echo("<a href='thread.php?id=" . $thread['threadId'] . "'>");
+                if($thread = $result->fetch_assoc()){
                     echo("<h2>".$thread['threadTitle']."</h2>");
                     echo("<p>By: ".$thread['threadAuthor']."</p>");
-                    echo("</a>");
+                    echo("<p>".$thread['threadText']."</p>");
+                }else{
+                    die("thread does not exist");
                 }
-            }else {
+            } else {
                 echo "Error: " . $stmt->error;
             }
+            $offset = $pageNumber * 10;
+            //get thread comments
         ?>
         <!-- next and back buttons -->
         <?php
         if($pageNumber > 0){
-            echo("<a href='threads.php?page=".$pageNumber - 1 ."'>Previous</a>");
+            echo("<a href='threads.php?page=".$pageNumber - 1 ."id=" . $threadId ."'>Previous</a>");
         }
-        echo("<a href='threads.php?page=".$pageNumber + 1 ."'>Next</a>");
+        echo("<a href='threads.php?page=".$pageNumber + 1 ."id=" . $threadId ."'>Next</a>");
         ?>
     </main>
 </html>
