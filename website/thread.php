@@ -12,6 +12,9 @@
                 die("null thread");
             }
             $threadId = $_GET['id'];
+
+            echo("<a href='createReply.php?threadid=" . $threadId . "'><h3>Reply to thread</h3></a>");
+
             $pageNumber = 0;
             if(isset($_GET['page'])){
                 $pageNumber = $_GET['page'];
