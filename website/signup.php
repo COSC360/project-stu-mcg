@@ -41,7 +41,6 @@
                     echo "Error: " . $stmt->error;
                 }
             }
-
 			// close db connection
 			$conn->close();
 		}

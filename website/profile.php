@@ -8,15 +8,17 @@
         <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
+                <a id = "editLink" href="#">edit profile</a>
+
                 <?php 
                     if(isset($_SESSION['username'])){
                         echo '<h1>'. $_SESSION['username'].'</h1>';
                     }
                 ?>
+
                 <img class="profilePic" src="img/blank-profile-picture-973460_1280.png">
                 <h2>Bio:</h2>
-                <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Praesent ante turpis, molestie in orci eu, aliquam sagittis augue. Pellentesque tincidunt.</p>
-                <a id = "editLink" href="#">edit profile<a>
+                <p>Super cool person!</p>
                 <h2>Location: Kelowna BC</h2>
                 <h2>Post Count: 3333</h2>
                 <h2>Recent threads:</h2>
