@@ -50,4 +50,4 @@ CREATE TABLE images (
 );
 
 -- admin user
-INSERT INTO users VALUES ('admin', 'stu', 'mcg', 'admin@email.com', 'password', 'NULL', '', '');
+INSERT INTO users VALUES ('admin', 'stu', 'mcg', 'admin@email.com', 'password', 'NULL', '1', '');
