@@ -5,12 +5,14 @@
     margin-top: 20px;
     background-color: white;
 }
-h1{
+.search h1{
     display: inline;
+    float: left;
+    margin-right: 1em;
 }
 h1,h2{
     font-weight: bold; 
-    margin-bottom: 5px;
+    /* margin-bottom: 5px; */
     color: #336033 !important;
 }
 p{
@@ -29,6 +31,7 @@ p{
     float: right;
     margin: 1em;
     font-weight: bold;
+    margin-left: 3em;
   }
 .title{
     display: inline;
@@ -37,7 +40,7 @@ p{
     float: right;
     color:#336033;
     margin: 1em;
-
+    margin-left: 1em;
 }
 .np{
     display: inline-block;
@@ -51,13 +54,11 @@ p{
     font-weight: bold;
 }
   .search {
-    display: flex;
+    display: block;
     justify-content: center;
     align-items: center;
     height: 80px; 
-    position: absolute;
-    top: 11%;
-    left: 40%;
+    width: 100%;
   }
   
   .search form {
@@ -71,6 +72,7 @@ p{
     border: none;
     border-radius: 20px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 2.15em;
   }
   
   .search input[type="submit"] {
@@ -82,7 +84,6 @@ p{
     border: none;
     margin-left: 10px;
     cursor: pointer;
-    display: inline;
-    float: right;
+    margin-top: 2.15em;
   }
   
