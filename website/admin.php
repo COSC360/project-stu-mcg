@@ -7,6 +7,11 @@
             <script src="scripts/login-validation.js"></script>
         </head>
         <?php include('header.php'); ?>
+        <?php
+            if(!isset($_SESSION['isAdmin'])){
+                die("Must be signed in as admin user to view this page");
+            }
+        ?>
     <main>
     <div class="manage">
         <form method="post" action="">
@@ -23,34 +28,31 @@
             }
             $sql = "";
 
-            $stmt = $conn->prepare("SELECT * FROM users WHERE username LIKE '%$search%' OR firstName LIKE '%$search%' OR lastName LIKE '%$search%' OR email LIKE '%$search%'"); 
+            $stmt = $conn->prepare("SELECT * FROM users WHERE username LIKE '%$search%' OR email LIKE '%$search%'"); 
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
 
                 echo '<table>';
-                echo '<tr><th>Username</th><th>First Name</th><th>Last Name</th><th>Email</th><th>Password</th><th>Profile Image</th><th>Is Admin</th><th>Priviledges</th></tr>';
+                echo '<tr><th>Username</th><th>Email</th><th>Password</th><th>Priviledges</th></tr>';
 
                 while ($row = $result->fetch_assoc()) {
                     $username = $row['username'];
-                    $firstName = $row['firstName'];
-                    $lastName = $row['lastName'];
                     $email = $row['email'];
                     $password = $row['password'];
-                    $profileImage = $row['profileImage'];
                     $isAdmin = $row['isAdmin'];
                     $enabled = $row['enabled'];
                     echo '<tr>';
-                    echo '<td>' . $username . '</td>';
-                    echo '<td>' . $firstName . '</td>';
-                    echo '<td>' . $lastName . '</td>';
+                    echo '<td><a href = "profile.php?user=' . $username .'">' . $username . '</td>';
                     echo '<td>' . $email . '</td>';
                     echo '<td>' . $password . '</td>';
-                    echo '<td>' . $profileImage . '</td>';
-                    echo '<td>' . ($isAdmin == 1 ? 'Yes': 'No') . '</td>';
                     echo "<td><form action='changeState.php' method='POST'>";
                     echo "<input type='hidden' name='username' value='".$username."'>";
                     echo "<input type='hidden' name='enabled' value='".$enabled."'>"; 
-                    echo "<input type='submit' value='".($enabled == 0 ? 'Disable': 'Enable')."'>";
+                    if($isAdmin == 0){
+                        echo ("<input type='submit' value='".($enabled == 0 ? 'Disable': 'Enable')."'>");
+                    }else{
+                        echo("Admin");
+                    }
                     echo "</form></td>";
                     echo '</tr>';
                 }

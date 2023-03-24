@@ -13,15 +13,13 @@
             }
         ?>
         <li>
-            <a 
-                <?php 
-                if(isset($_SESSION['username'])){
-                    echo 'href="profile.php">'. $_SESSION['username'];
-                } else{
-                    echo 'href="login.php">'.'Login';
-                }
-                ?>
-            </a>
+            <?php 
+            if(isset($_SESSION['username'])){
+                echo '<a href="profile.php">'. $_SESSION['username'] .'</a>';
+            } else{
+                echo '<a href="login.php">'.'Login</a>';
+            }
+            ?>
         </li>
     </ul>
 </header> 

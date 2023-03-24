@@ -88,10 +88,10 @@
                         header("Location: login.php");
                         exit();
                     }
+                    if($username == ($_SESSION['username'])){
+                        echo('<form method="post"><button type="submit" class="logout" name="logout">Logout</button></form>');
+                    }
                 ?>
-                <form method="post">
-                    <button type="submit" class="logout" name="logout">Logout</button>
-                </form>
             </div>
         </main>
         <?php $conn->close();?>
