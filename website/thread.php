@@ -12,8 +12,11 @@
                 die("null thread");
             }
             $threadId = $_GET['id'];
-
-            echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a>");
+            if(isset($_SESSION['username'])){
+                echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a>");
+            } else{
+                echo '<p>Must be logged in to reply</p>';
+            }
 
             $pageNumber = 0;
             if(isset($_GET['page'])){
