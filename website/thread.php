@@ -35,11 +35,18 @@
                 echo "Error: " . $stmt->error;
             }
             $offset = $pageNumber * 10;
-            $stmt = $conn->prepare("SELECT * FROM replies WHERE thread = ? ORDER BY replyDate LIMIT 10 OFFSET ?");
+            $stmt = $conn->prepare("SELECT * FROM replies WHERE thread = ? ORDER BY replyDate LIMIT 11 OFFSET ?");
             $stmt->bind_param("dd", $threadId, $offset);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
+                $count = 0;
+                $more = false;
                 while($reply = $result->fetch_assoc()){
+                    $count++;
+                    if($count == 11){
+                        $more = true;
+                        break;
+                    }
                     $author = $reply['replyAuthor'];
                     $text = $reply['replyText'];
                     $date = $reply['replyDate'];
@@ -60,7 +67,9 @@
         if($pageNumber > 0){
             echo("<a href='thread.php?page=".$pageNumber - 1 ."&id=" . $threadId ."'>Previous</a>");
         }
-        echo("<a href='thread.php?page=".$pageNumber + 1 ."&id=" . $threadId ."'>Next</a>");
+        if($more == true){
+            echo("<a href='thread.php?page=".$pageNumber + 1 ."&id=" . $threadId ."'>Next</a>");
+        }
         ?>
     </main>
 </html>

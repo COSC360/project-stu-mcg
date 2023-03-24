@@ -22,12 +22,19 @@
                 $pageNumber = $_GET['page'];
             }
             include("dbConnection.php");
-            $stmt = $conn->prepare("SELECT * FROM threads ORDER BY lastPost DESC LIMIT 10 OFFSET ?");
+            $stmt = $conn->prepare("SELECT * FROM threads ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
             $offset = $pageNumber * 10;
             $stmt->bind_param("d", $offset);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
+                $count = 0;
+                $more = false;
                 while($thread = $result->fetch_assoc()){
+                    $count++;
+                    if($count == 11){
+                        $more = true;
+                        break;
+                    }
                     $id = $thread['threadId'];
                     $title = $thread['threadTitle'];
                     $author = $thread['threadAuthor'];
@@ -52,10 +59,12 @@
         ?>
         <!-- next and back buttons -->
         <?php
-        if($pageNumber > 0){
-            echo("<a href='threads.php?page=".$pageNumber - 1 ."' class='np'>Previous</a>");
-        }
-        echo("<a href='threads.php?page=".$pageNumber + 1 ."' class='np'>Next</a>");
+            if($pageNumber > 0){
+                echo("<a href='threads.php?page=".$pageNumber - 1 ."' class='np'>Previous</a>");
+            }
+            if($more == true){
+                echo("<a href='threads.php?page=".$pageNumber + 1 ."' class='np'>Next</a>");
+            }
         ?>
        
     </main>
