@@ -13,10 +13,14 @@
                 <?php 
                     if(isset($_SESSION['username'])){
                         echo '<h1>'. $_SESSION['username'].'</h1>';
+                        if($result = glob("./userImages/" . $_SESSION['username'] . ".*")){
+                            echo("<img class='profilePic' src='{$result[0]}'>");
+                        } else {
+                            echo("<img class='profilePic' src='img/blank-profile-picture-973460_1280.png'>");
+                        }
                     }
+                    
                 ?>
-
-                <img class="profilePic" src="img/blank-profile-picture-973460_1280.png">
                 <h2>Bio:</h2>
                 <p>Super cool person!</p>
                 <h2>Location: Kelowna BC</h2>

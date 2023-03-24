@@ -14,7 +14,6 @@ CREATE TABLE users (
     lastName varchar(63),
     email varchar(63) NOT NULL,
     password varchar(127) NOT NULL,
-    profileImage BLOB,
     isAdmin boolean NOT NULL DEFAULT 0,
     enabled boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (username),
