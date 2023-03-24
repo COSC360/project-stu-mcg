@@ -77,11 +77,11 @@
             <h1 class = 'title'>Threads</h1>
             <?php
                 if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
-                    echo ("<a class='button' href='createThread.php'>Create a thread</a></div>");
+                    echo ("<a class='button' href='createThread.php'>Create a thread</a>");
                 }elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
-                    echo ("<p class = 'msg'> Your account has been suspended from posting </p></div>");
+                    echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
                 }else{
-                    echo ("<p class = 'msg'> You must be logged in to post</p></div>");
+                    echo ("<p class = 'msg'> You must be logged in to post</p>");
                 }
             ?>
             <label for="region">Region:</label>
@@ -106,7 +106,8 @@
                 ?>
             </select>
             <input type="text" name="search" placeholder="Search" id="searchbar">
-            <input type="button" value="Search" onclick="updateSearch()">
+            <input class="s"type="button" value="Search" onclick="updateSearch()">
+            </div>
             <div id='threadsList'></div>
             <!-- next and back buttons -->
             <input type="hidden" id="pageNum" value="0">

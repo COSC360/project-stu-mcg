@@ -51,6 +51,7 @@ p{
     float: right;
     color:#336033;
     margin: 1em;
+    margin-top: 2em;
 }
 .np{
     display: inline-block;
@@ -64,7 +65,7 @@ p{
     font-weight: bold;
 }
   .search {
-    display: block;
+    display: inline;
     justify-content: center;
     align-items: center;
     height: 80px; 
@@ -86,7 +87,7 @@ p{
     margin-top: 2.15em;
   }
   
-  .search input[type="submit"] {
+  .search input[type="button"] {
     padding: 10px 20px;
     background-color: #ccc;
     color: #336033;
@@ -116,7 +117,7 @@ p{
   label{
     color: #336033;
     text-emphasis: bold;
-    margin-top: 2.15em;
+    margin-top: 2.5em;
     margin-left: 1em;
   }
-  
+    
