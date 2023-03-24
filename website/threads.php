@@ -32,6 +32,12 @@
                     echo "<div class='thread'>"; // Start of block
                     echo("<a href='thread.php?id=" . $thread['threadId'] . "'>");
                     echo "<h2 >{$title}</h2></a>"; // Thread title in bold
+                    if(isset($_SESSION['isAdmin'])){
+                        echo "<form action='deleteThread.php' method='POST'>";
+                        echo "<input type='hidden' name='threadId' value='".$id."'>";
+                        echo "<input type='submit' value='Delete'>";
+                        echo "</form>";
+                    }   
                     echo "<p class='author' >Author: {$author}</p>"; // Author underneath
                     echo "<p>{$text}</p>"; // Preview of thread text
                     echo "</div>"; 
@@ -40,7 +46,6 @@
                 echo "Error: " . $stmt->error;
             }
             $conn->close();
-
         ?>
         <!-- next and back buttons -->
         <?php

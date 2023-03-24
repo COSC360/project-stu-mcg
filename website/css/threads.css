@@ -48,3 +48,16 @@ p{
     text-align: center;
     font-weight: bold;
 }
+  
+input[type="submit"] {
+    padding: 10px 20px;
+    background-color: #ccc;
+    color: #336033;
+    font-weight: bold;
+    border-radius: 20px;
+    border: none;
+    margin-left: 10px;
+    cursor: pointer;
+    display: inline;
+    float: right;
+  }
