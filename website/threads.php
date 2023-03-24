@@ -56,7 +56,7 @@
                 $reg = $_POST['region'];
             }
 
-            $stmt = $conn->prepare("SELECT * FROM threads WHERE region LIKE '%$reg%' AND threadTitle LIKE '%$search%' OR threadAuthor LIKE '%$search%'  ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
+            $stmt = $conn->prepare("SELECT * FROM threads WHERE region LIKE '%$reg%' AND (threadTitle LIKE '%$search%' OR threadAuthor LIKE '%$search%')  ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
             $offset = $pageNumber * 10;
             $stmt->bind_param("d", $offset);
 
