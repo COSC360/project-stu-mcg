@@ -9,10 +9,13 @@
     <main>
         <h1 class = 'title'>Threads</h1>
         <?php
-            if(isset($_SESSION['username'])){
+            if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
                 echo ("<a class='button' href='createThread.php'>Create a thread</a>");
-            } else{
-                echo ("<p class = 'msg'> You must be loggeed in to create a thread </p>");
+            } elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
+                echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
+            }
+            else{
+                echo ("<p class = 'msg'> You must be logged in to post</p>");
             }
             $pageNumber = 0;
             if(isset($_GET['page'])){

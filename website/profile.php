@@ -35,6 +35,9 @@
                         if(isset($_SESSION['isAdmin'])){
                             unset($_SESSION['isAdmin']);
                         }
+                        if(isset($_SESSION['banned'])){
+                            unset($_SESSION['banned']);
+                        }
                         header("Location: login.php");
                         exit();
                     }

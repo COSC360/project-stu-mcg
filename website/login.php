@@ -32,6 +32,12 @@
                     $username = $row['username'];
                     $_SESSION['username'] = $username;
                     $isAdmin = $row['isAdmin'];
+                    $enabled = $row['enabled'];
+                    if($enabled == 1){
+                        $_SESSION['banned'] = True;
+                        header("Location: banned.php");
+                        exit();
+                    }
                     if($isAdmin == 1){
                         $_SESSION['isAdmin'] = True;
                     }
