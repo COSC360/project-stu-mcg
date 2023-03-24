@@ -8,13 +8,18 @@
             <?php include('header.php'); ?>
     <main>
         <h1 class = 'title'>Threads</h1>
+        <div class = "search">
+            <form method="post" action="">
+                <input type="text" name="search" placeholder="Search">
+                <input type="submit" value="Search">
+            </form>
+        </div>
         <?php
             if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
                 echo ("<a class='button' href='createThread.php'>Create a thread</a>");
-            } elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
+            }elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
                 echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
-            }
-            else{
+            }else{
                 echo ("<p class = 'msg'> You must be logged in to post</p>");
             }
             $pageNumber = 0;
@@ -22,9 +27,16 @@
                 $pageNumber = $_GET['page'];
             }
             include("dbConnection.php");
-            $stmt = $conn->prepare("SELECT * FROM threads ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
+
+            $search = "";
+            if (isset($_POST['search'])) {
+                $search = $_POST['search'];
+            }
+
+            $stmt = $conn->prepare("SELECT * FROM threads WHERE threadTitle LIKE '%$search%' OR threadAuthor LIKE '%$search%' ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
             $offset = $pageNumber * 10;
             $stmt->bind_param("d", $offset);
+
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
                 $count = 0;

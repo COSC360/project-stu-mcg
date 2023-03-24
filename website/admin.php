@@ -26,7 +26,6 @@
             if (isset($_POST['search'])) {
                 $search = $_POST['search'];
             }
-            $sql = "";
 
             $stmt = $conn->prepare("SELECT * FROM users WHERE username LIKE '%$search%' OR email LIKE '%$search%'"); 
             if ($stmt->execute()) {
