@@ -46,6 +46,9 @@
                         threadDiv = $("<div class='thread'></div>");
                         threadDiv.append(`<a href='thread.php?id=${thread.threadId}'><h2 >${thread.threadTitle}</h2></a>`);
                         threadDiv.append(`<p class='author' >Author: ${thread.threadAuthor}</p>`);
+                        if($('#isAdmin').val() == 1){
+                            threadDiv.append(`<input class='delete' type='button' value='Delete' onclick='deleteThread(${thread.threadId})'>`)
+                        }
                         threadDiv.append(`<p>${thread.threadText}</p>`); 
                         threadsList.append(threadDiv);
                     });
@@ -59,10 +62,17 @@
                     $('#pageNum').val($('#pageNum').val() - 1);
                     updateThreads();
                 }
+
+                function deleteThread(threadId){
+                    $.post("deleteThread.php", {threadId: threadId}, function(){
+                        updateThreads();
+                    });
+                }
             </script>
         </head>
         <?php include('header.php'); ?>
         <main>
+            <input type = "hidden" id="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
             <div class = "search">
             <h1 class = 'title'>Threads</h1>
             <?php
