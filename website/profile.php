@@ -60,8 +60,8 @@
                         $stmt->bind_param('s', $username);
                         if($stmt->execute()){
                             $result = $stmt->get_result();
-                            while($thread = $result->fetch_assoc()){
-                                echo("<a href = 'thread.php?id=" . $thread['threadId'] . "><li>" . $thread['threadTitle'] . "</li></a>");
+                            while($thread = $result->fetch_assoc()){                            
+                                echo("<a href = 'thread.php?id=" . $thread['threadId'] . "'><li>" . $thread['threadTitle'] . "</li></a>");
                             }
                         }else{
                             die($stmt->error);
