@@ -7,20 +7,20 @@
         </head>
             <?php include('header.php'); ?>
     <main>
-        <h1 class = 'title'>Threads</h1>
         <div class = "search">
+        <h1 class = 'title'>Threads</h1>
             <form method="post" action="">
                 <input type="text" name="search" placeholder="Search">
                 <input type="submit" value="Search">
             </form>
-        </div>
+        
         <?php
             if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
-                echo ("<a class='button' href='createThread.php'>Create a thread</a>");
+                echo ("<a class='button' href='createThread.php'>Create a thread</a></div>");
             }elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
-                echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
+                echo ("<p class = 'msg'> Your account has been suspended from posting </p></div>");
             }else{
-                echo ("<p class = 'msg'> You must be logged in to post</p>");
+                echo ("<p class = 'msg'> You must be logged in to post</p></div>");
             }
             $pageNumber = 0;
             if(isset($_GET['page'])){
