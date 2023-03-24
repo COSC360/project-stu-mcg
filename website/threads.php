@@ -10,6 +10,25 @@
         <div class = "search">
         <h1 class = 'title'>Threads</h1>
             <form method="post" action="">
+                <label for="region">Region:</label>
+                <select name="region" >
+                    <?php
+                        include('dbConnection.php');
+                        $regions = array();
+                        $stmt = $conn->prepare("SELECT region FROM regions;");
+                        if ($stmt->execute()) {
+                            $result = $stmt->get_result();
+                            while($region = $result->fetch_assoc()){
+                                array_push($regions, $region['region']);
+                            }
+                        } else {
+                            echo "Error: " . $stmt->error;
+                        }
+                        foreach($regions as $region){
+                            echo('<option value="'. $region .'">' . $region .'</option>');
+                        }
+                    ?>
+                </select>
                 <input type="text" name="search" placeholder="Search">
                 <input type="submit" value="Search">
             </form>
@@ -32,8 +51,12 @@
             if (isset($_POST['search'])) {
                 $search = $_POST['search'];
             }
+            $reg = "";
+            if(isset($_POST['region'])){
+                $reg = $_POST['region'];
+            }
 
-            $stmt = $conn->prepare("SELECT * FROM threads WHERE threadTitle LIKE '%$search%' OR threadAuthor LIKE '%$search%' ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
+            $stmt = $conn->prepare("SELECT * FROM threads WHERE region LIKE '%$reg%' AND threadTitle LIKE '%$search%' OR threadAuthor LIKE '%$search%'  ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
             $offset = $pageNumber * 10;
             $stmt->bind_param("d", $offset);
 

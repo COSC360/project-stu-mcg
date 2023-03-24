@@ -57,9 +57,9 @@
                     <label for="region">Region:</label>
                     <select name="region" >
                         <?php
-                        foreach($regions as $region){
-                            echo('<option value="'. $region .'">' . $region .'</option>');
-                        }
+                            foreach($regions as $region){
+                                echo('<option value="'. $region .'">' . $region .'</option>');
+                            }
                         ?>
                     </select>
                     <br>

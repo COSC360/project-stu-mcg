@@ -25,6 +25,7 @@ CREATE TABLE regions (
     PRIMARY KEY (region)
 );
 
+INSERT INTO regions VALUES ('All');
 INSERT INTO regions VALUES ('Island');
 INSERT INTO regions VALUES ('Coastal');
 INSERT INTO regions VALUES ('Interior');
