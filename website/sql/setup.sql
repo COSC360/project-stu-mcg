@@ -20,6 +20,17 @@ CREATE TABLE users (
     UNIQUE KEY (email)
 );
 
+CREATE TABLE regions (
+    region varchar(63) NOT NULL,
+    PRIMARY KEY (region)
+);
+
+INSERT INTO regions VALUES ('Island');
+INSERT INTO regions VALUES ('Coastal');
+INSERT INTO regions VALUES ('Interior');
+INSERT INTO regions VALUES ('North');
+INSERT INTO regions VALUES ('Other');
+
 CREATE TABLE threads (
     threadId INT NOT NULL AUTO_INCREMENT,
     threadTitle varchar(255) NOT NULL,
@@ -27,8 +38,10 @@ CREATE TABLE threads (
     lastPost DATETIME NOT NULL,
     threadAuthor varchar(63),
     threadText varchar(8191) NOT NULL,
+    region varchar(63), 
     PRIMARY KEY (threadId),
-    FOREIGN KEY(threadAuthor) REFERENCES users(username) ON UPDATE CASCADE ON DELETE SET NULL
+    FOREIGN KEY(threadAuthor) REFERENCES users(username) ON UPDATE CASCADE ON DELETE SET NULL,
+    FOREIGN KEY(region) REFERENCES regions(region) ON UPDATE CASCADE ON DELETE SET NULL
 );
 
 CREATE TABLE replies (
