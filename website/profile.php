@@ -8,7 +8,6 @@
         <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
-                <a id = "editLink" href="#">edit profile</a>
 
                 <?php 
                     if(isset($_GET['user'])){
@@ -18,18 +17,27 @@
                     }else{
                         die("null user");
                     }
+                    if($username == ($_SESSION['username'])){
+                        echo('<a id = "editLink" href="editProfile.php">edit profile</a>');
+                    }
                     include('dbConnection.php');
                     $stmt = $conn->prepare("SELECT * FROM users WHERE username = ?");
                     $stmt->bind_param("s", $username);
                     if($stmt->execute()){
                         $result = $stmt->get_result();
-                        if(!$result->fetch_assoc()){
+                        if($user = $result->fetch_assoc()){
+                            $bio = $user['bio'];
+                            $location = $user['location'];
+                            if($location == ""){
+                                $location = "Unknown";
+                            }
+                        }else{
                             die("user does not exist");
                         }
                     } else {
                         die("Error: " . $stmt->error);
                     }
-                    echo '<h1>'. $username.'</h1>';
+                    echo ('<h1>'. $username.'</h1>');
                     if($result = glob("./userImages/" . $username . ".*")){
                         echo("<img class='profilePic' src='{$result[0]}'>");
                     } else {
@@ -37,8 +45,8 @@
                     }
                 ?>
                 <h2>Bio:</h2>
-                <p>Super cool person!</p>
-                <h2>Location: Kelowna BC</h2>
+                <p><?php echo($bio)?></p>
+                <h2>Location: <?php echo($location)?></h2>
                 <h2>
                     Post Count:
                     <?php

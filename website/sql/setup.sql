@@ -10,10 +10,10 @@ GRANT ALL PRIVILEGES ON cosc360project.* TO 'cosc360user'@'%';
 
 CREATE TABLE users (
     username varchar(63) NOT NULL,
-    firstName varchar(63),
-    lastName varchar(63),
     email varchar(63) NOT NULL,
     password varchar(127) NOT NULL,
+    location varchar(127) DEFAULT "",
+    bio varchar(8191) DEFAULT "",
     isAdmin boolean NOT NULL DEFAULT 0,
     enabled boolean NOT NULL DEFAULT 0,
     PRIMARY KEY (username),
@@ -44,9 +44,8 @@ CREATE TABLE replies (
 
 CREATE TABLE images (
     imageId INT NOT NULL AUTO_INCREMENT,
-    image BLOB NOT NULL,
     PRIMARY KEY (imageId)
 );
 
 -- admin user
-INSERT INTO users VALUES ('admin', 'stu', 'mcg', 'admin@email.com', MD5('password'), 'NULL', '1', '');
+INSERT INTO users VALUES ('admin', 'admin@email.com', MD5('password'), "", "", '1', '0');

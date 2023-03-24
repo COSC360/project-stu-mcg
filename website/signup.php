@@ -16,6 +16,12 @@
 			$username = $_POST["username"];
 			$email = $_POST["email"];
 			$password = $_POST["password"];
+            //upload profile image
+            if(isset($_FILES['profileImage'])){
+                $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
+                move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
+            }
+            //upload profile image
             if(isset($_FILES['profileImage'])){
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
                 move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
