@@ -57,7 +57,7 @@
                     if(isset($_SESSION['isAdmin'])){
                         echo "<form action='deleteThread.php' method='POST'>";
                         echo "<input type='hidden' name='threadId' value='".$id."'>";
-                        echo "<input type='submit' value='Delete'>";
+                        echo "<input class='delete'type='submit' value='Delete'>";
                         echo "</form>";
                     }   
                     echo "<p class='author' >Author: {$author}</p>"; // Author underneath
