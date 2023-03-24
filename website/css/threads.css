@@ -97,4 +97,26 @@ p{
     cursor: pointer;
     margin-top: 2.15em;
   }
+  select {
+    display: inline-block;
+    padding: 10px;
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+    margin-top: 2.15em;
+    font-weight: bold;
+    color: #336033;
+    background-color: #ccc;
+  }
+  
+  option {
+    color: #336033;
+    background-color: white;
+  }
+  label{
+    color: #336033;
+    text-emphasis: bold;
+    margin-top: 2.15em;
+    margin-left: 1em;
+  }
   
