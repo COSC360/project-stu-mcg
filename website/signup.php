@@ -19,6 +19,11 @@
             //upload profile image
             if(isset($_FILES['profileImage'])){
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
+                //delete old profile image
+                $files = glob($username.".*");
+                foreach($files as $file){
+                    unlink($file);
+                }
                 move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
             }
             include('dbConnection.php');
