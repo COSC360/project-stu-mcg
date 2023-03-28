@@ -26,6 +26,11 @@
             //upload profile image
             if(isset($_FILES['profileImage'])){
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
+                $files = glob("userImages/".$username.".*");
+                foreach($files as $file){
+                    unlink($file);
+                }
+                move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
                 move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
             }
 

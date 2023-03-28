@@ -20,7 +20,7 @@
             if(isset($_FILES['profileImage'])){
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
                 //delete old profile image
-                $files = glob($username.".*");
+                $files = glob("userImages/".$username.".*");
                 foreach($files as $file){
                     unlink($file);
                 }
