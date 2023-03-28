@@ -21,11 +21,6 @@
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
                 move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
             }
-            //upload profile image
-            if(isset($_FILES['profileImage'])){
-                $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
-                move_uploaded_file($_FILES['profileImage']["tmp_name"], "userImages/" . $username . "." . $ext);
-            }
             include('dbConnection.php');
 
 			// check if username already exists
