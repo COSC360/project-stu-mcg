@@ -96,6 +96,10 @@
                 <label for="region">Region:</label>
                 <select name="region" id="regionSelect" onchange="updateSearch()">
                    <?php
+                        $selectedRegion = false;
+                        if(isset($_GET['region'])){
+                            $selectedRegion = $_GET['region'];
+                        }
                         include('dbConnection.php');
                         $regions = array();
                         $stmt = $conn->prepare("SELECT region FROM regions;");
@@ -110,7 +114,11 @@
                         $conn->close();
                         echo('<option value="all">all</option>');
                         foreach($regions as $region){
-                            echo('<option value="'. $region .'">' . $region .'</option>');
+                            if($selectedRegion && $selectedRegion == $region){
+                                echo('<option value="'. $region .'" selected="selected">' . $region .'</option>');
+                            }else{
+                                echo('<option value="'. $region .'">' . $region .'</option>');
+                            }
                         }
                     ?>
                 </select>

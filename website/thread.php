@@ -33,6 +33,7 @@
                 }
 
                 function displayThread(threadContent){
+                    $('#breadcrum').append(`<h3>/<a href="threads.php?region=${threadContent.thread.region}">${threadContent.thread.region}</a>/${threadContent.thread.threadTitle}</h3>`);
                     threadLeftDiv = $("<div class='threadLeft'></div>");
                     threadRightDiv = $("<div class='threadRight'></div>");
                     $('#threadPost').append(`<h2 class ='threadTitle'>${threadContent.thread.threadTitle}</h2>`);
@@ -72,6 +73,7 @@
         </head>
         <?php include('header.php'); ?>
         <main>
+        <div id='breadcrum'></div>
         <div id='threadPost' class='thread'></div>
             <div class='replyButton'>
                 <?php
