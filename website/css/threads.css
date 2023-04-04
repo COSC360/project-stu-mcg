@@ -1,8 +1,7 @@
 .thread{
     border: 1px solid #0c0505; 
     padding: 10px; 
-    margin-bottom: 20px;
-    margin-top: 20px;
+    margin: 20px;
     background-color: white;
 }
 .search h1{
@@ -12,15 +11,14 @@
 }
 h1,h2{
     font-weight: bold; 
-    /* margin-bottom: 5px; */
+    margin-bottom: 5px;
     color: #336033 !important;
 }
+
 p{
     margin-bottom: 5px;
 }
-.author{
-    font-weight: bold; 
-}
+
 .button {
     display: inline;
     padding: 10px 20px;
@@ -46,7 +44,9 @@ p{
 }
 .title{
     display: inline;
+    padding-left: 20px;
 }
+
 .msg{
     float: right;
     color:#336033;
@@ -64,6 +64,7 @@ p{
     text-align: center;
     font-weight: bold;
 }
+
   .search {
     display: inline;
     justify-content: center;
@@ -71,14 +72,14 @@ p{
     height: 80px; 
     width: 100%;
   }
-  
+
   .search form {
     display: inline-flex;
     align-items: center;
     justify-content: center;
     margin-left: 0.5em;
   }
-  
+
   .search input[type="text"] {
     padding: 10px;
     border: none;
@@ -98,6 +99,7 @@ p{
     cursor: pointer;
     margin-top: 2.15em;
   }
+
   select {
     display: inline-block;
     padding: 10px;
@@ -109,7 +111,7 @@ p{
     color: #336033;
     background-color: #ccc;
   }
-  
+
   option {
     color: #336033;
     background-color: white;
@@ -120,4 +122,27 @@ p{
     margin-top: 2.5em;
     margin-left: 1em;
   }
+  img{
+    max-width: 100px;
+    max-height: 100px;
+  }
+
+  .threadLeft{
+    padding: 5px;
+    border: 1px solid black;
+    display: inline-block;
+    margin-right: 10px;
+  }
+  .threadRight{
+    display: inline-block;
+  }
+
+  .author{
+    font-weight: bold; 
+    text-align: center;
+    margin-top: 0px;
+}
+.threadTitle{
+  margin-top: 0px;
+}
     

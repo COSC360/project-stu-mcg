@@ -44,12 +44,19 @@
                     threads.forEach(function(thread){
                         console.log(thread)
                         threadDiv = $("<div class='thread'></div>");
-                        threadDiv.append(`<a href='thread.php?id=${thread.threadId}'><h2 >${thread.threadTitle}</h2></a>`);
-                        threadDiv.append(`<p class='author' >Author: ${thread.threadAuthor}</p>`);
+                        threadLeftDiv = $("<div class='threadLeft'></div>");
+                        threadRightDiv = $("<div class='threadRight'></div>");
+                        threadDiv.append(`<a href='thread.php?id=${thread.threadId}'><h2 class ='threadTitle'>${thread.threadTitle}</h2></a>`);
+                        threadLeftDiv.append(`<img class='userImg' src='${thread.authorImg}'>`);
+                        threadLeftDiv.append(`<p class='author'>${thread.threadAuthor}</p>`);
+                        threadRightDiv.append(`<p>${thread.threadText}</p>`);
+                        authorLink = $(`<a href = 'profile.php?user=${thread.threadAuthor}'>`);
+                        authorLink.append(threadLeftDiv);
+                        threadDiv.append(authorLink);
+                        threadDiv.append(threadRightDiv);
                         if($('#isAdmin').val() == 1){
                             threadDiv.append(`<input class='delete' type='button' value='Delete' onclick='deleteThread(${thread.threadId})'>`)
                         }
-                        threadDiv.append(`<p>${thread.threadText}</p>`); 
                         threadsList.append(threadDiv);
                     });
                 }
@@ -70,44 +77,47 @@
                 }
             </script>
         </head>
+
         <?php include('header.php'); ?>
         <main>
-            <input type = "hidden" id="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
-            <div class = "search">
-            <h1 class = 'title'>Threads</h1>
-            <?php
-                if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
-                    echo ("<a class='button' href='createThread.php'>Create a thread</a>");
-                }elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
-                    echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
-                }else{
-                    echo ("<p class = 'msg'> You must be logged in to post</p>");
-                }
-            ?>
-            <label for="region">Region:</label>
-            <select name="region" id="regionSelect" onchange="updateSearch()">
+            <div>
+                <input type = "hidden" id="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
+                <div class = "search">
+                <h1 class = 'title'>Threads</h1>
                 <?php
-                    include('dbConnection.php');
-                    $regions = array();
-                    $stmt = $conn->prepare("SELECT region FROM regions;");
-                    if ($stmt->execute()) {
-                        $result = $stmt->get_result();
-                        while($region = $result->fetch_assoc()){
-                            array_push($regions, $region['region']);
-                        }
-                    } else {
-                        echo "Error: " . $stmt->error;
-                    }
-                    $conn->close();
-                    echo('<option value="all">all</option>');
-                    foreach($regions as $region){
-                        echo('<option value="'. $region .'">' . $region .'</option>');
+                    if(isset($_SESSION['username']) and !isset($_SESSION['banned'])){
+                        echo ("<a class='button' href='createThread.php'>Create a thread</a>");
+                    }elseif (isset($_SESSION['username']) and isset($_SESSION['banned'])){
+                        echo ("<p class = 'msg'> Your account has been suspended from posting </p>");
+                    }else{
+                        echo ("<p class = 'msg'> You must be logged in to post</p>");
                     }
                 ?>
-            </select>
-            <input type="text" name="search" placeholder="Search" id="searchbar">
-            <input class="s"type="button" value="Search" onclick="updateSearch()">
+                <label for="region">Region:</label>
+                <select name="region" id="regionSelect" onchange="updateSearch()">
+                   <?php
+                        include('dbConnection.php');
+                        $regions = array();
+                        $stmt = $conn->prepare("SELECT region FROM regions;");
+                        if ($stmt->execute()) {
+                            $result = $stmt->get_result();
+                            while($region = $result->fetch_assoc()){
+                                array_push($regions, $region['region']);
+                            }
+                        } else {
+                            echo "Error: " . $stmt->error;
+                        }
+                        $conn->close();
+                        echo('<option value="all">all</option>');
+                        foreach($regions as $region){
+                            echo('<option value="'. $region .'">' . $region .'</option>');
+                        }
+                    ?>
+                </select>
+                <input type="text" name="search" placeholder="Search" id="searchbar">
+                <input class="s"type="button" value="Search" onclick="updateSearch()">
             </div>
+
             <div id='threadsList'></div>
             <!-- next and back buttons -->
             <input type="hidden" id="pageNum" value="0">
