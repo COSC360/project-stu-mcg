@@ -27,7 +27,7 @@
                 break;
             }
             if($findImg = glob("./userImages/" . $thread['threadAuthor'] . ".*")){
-                $thread['authorImg'] = $findImg[0];
+                $thread['authorImg'] = $findImg[0]. "?t=" .time();
             }else{
                 $thread['authorImg'] = 'img/blank-profile-picture-973460_1280.png?t='.time();
             }
