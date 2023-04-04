@@ -39,7 +39,7 @@
                     }
                     echo ('<h1>'. $username.'</h1>');
                     if($result = glob("./userImages/" . $username . ".*")){
-                        echo("<img class='profilePic' src='{$result[0]}'>");
+                        echo("<img class='profilePic' src='{$result[0]}?t=". time() . "'>");
                     } else {
                         echo("<img class='profilePic' src='img/blank-profile-picture-973460_1280.png'>");
                     }

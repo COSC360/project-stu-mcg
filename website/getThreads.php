@@ -29,7 +29,7 @@
             if($findImg = glob("./userImages/" . $thread['threadAuthor'] . ".*")){
                 $thread['authorImg'] = $findImg[0];
             }else{
-                $thread['authorImg'] = 'img/blank-profile-picture-973460_1280.png';
+                $thread['authorImg'] = 'img/blank-profile-picture-973460_1280.png?t='.time();
             }
             array_push($jsonResult->threads, $thread);
         }
