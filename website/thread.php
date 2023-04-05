@@ -73,11 +73,11 @@
                         replyLeftDiv.append(`<img class='userImg' src='${reply.authorImg}'>`);
                         replyLeftDiv.append(`<p class='author'>${reply.replyAuthor}</p>`);
                         replyRightDiv.append(generateReplyContent(reply.replyText));
-                        replyRightDiv.append(`Quote:<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]">`)
                         authorLink = $(`<a href = 'profile.php?user=${reply.replyAuthor}'>`);
                         authorLink.append(replyLeftDiv);
                         replyDiv.append(authorLink);
                         replyDiv.append(replyRightDiv);
+                        replyDiv.append(`<div class='quoteCheckDiv'>Quote:<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]"></div>`)
                         repliesList.append(replyDiv);
                     });
                     if(threadContent.replies.length > 3){

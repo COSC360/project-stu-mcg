@@ -2,6 +2,7 @@
     border: 1px solid #0c0505; 
     padding: 10px; 
     background-color: white;
+    overflow: auto;
 }
 
 .thread{
@@ -84,4 +85,8 @@ p{
   font-weight: bold;
   margin: 0px;
   padding: 0px;
+}
+
+.quoteCheckDiv{
+  float: right;
 }
