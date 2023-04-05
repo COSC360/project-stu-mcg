@@ -6,6 +6,7 @@
             <link rel="stylesheet" href="css/threads.css">
             <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
             <script>
+                lastUpdate = 0;
                 $(document).ready(function(){
                     updateThreads()
                 })
@@ -16,11 +17,14 @@
                 }
 
                 function updateThreads(){
-                    console.log($('#searchbar'))
+                    console.log('update')
                     $.post("getThreads.php", {page: $('#pageNum').val(), search: $('#searchbar').val(), region: $('#regionSelect').val()}, function(result){
                         result = JSON.parse(result)
                         if(result.success){
-                            displayThreads(result.threads)
+                            if(Date.parse(result.threads[0].lastPost) > lastUpdate){
+                                displayThreads(result.threads)
+                            }
+                            lastUpdate = Date.now();
                         }else{
                             console.log('error');
                         }

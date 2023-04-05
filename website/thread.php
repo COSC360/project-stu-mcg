@@ -7,6 +7,8 @@
             <link rel="stylesheet" href="css/thread.css">
             <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
             <script>
+                lastUpdate = 0
+                intervalId = 0
                 $(document).ready(function(){
                     updateThread()
                 })
@@ -15,19 +17,35 @@
                     $.post("getThreadContent.php", {page: $('#pageNum').val(), threadId: <?php echo($_GET['id'])?>}, function(res){
                         res = JSON.parse(res)
                         if(res.success){
-                            displayThread(res);
+                            console.log(Date.parse(res.thread.lastPost))
+                            console.log(lastUpdate);
+                            if(Date.parse(res.thread.lastPost) > lastUpdate){
+                                displayThread(res)
+                            }
+                            lastUpdate = Date.now();
+
+                            if($('#pageNum').val() == -1){
+                                $('#pageNum').val(res.pageNumber);
+                            }
                         }else{
                             console.log('error');
                         }
                         if($('#pageNum').val() == 0){
                             $('#previous').hide()
+                            $('#first').hide()
                         } else {
                             $('#previous').show()
+                            $('#first').show()
                         }
                         if(res.more){
                             $('#next').show()
+                            $('#last').show()
                         } else {
                             $('#next').hide()
+                            $('#last').hide()
+                            if(intervalId == 0){
+                                intervalId = setInterval(updateThread, 10000)
+                            }
                         }
                     });
                 }
@@ -114,8 +132,22 @@
                     $('#pageNum').val($('#pageNum').val() + 1);
                     updateThread();
                 }
+                function last(){
+                    $('#pageNum').val(-1);
+                    updateThread();
+                }
                 function previous(){
                     $('#pageNum').val($('#pageNum').val() - 1);
+                    clearInterval(intervalId)
+                    intervalId = 0
+                    lastUpdate = 0
+                    updateThread();
+                }
+                function first(){
+                    $('#pageNum').val(0);
+                    clearInterval(intervalId)
+                    intervalId = 0
+                    lastUpdate = 0
                     updateThread();
                 }
             </script>
@@ -152,9 +184,11 @@
                 ?>
             </form>
             <!-- next and back buttons -->
-            <input type="hidden" id="pageNum" value="0">
+            <input type="hidden" id="pageNum" value="<?php if(isset($_GET['page'])){echo($_GET['page']);} else{echo(0);} ?>">
+            <input type="button" id="first" value="First" onclick="first()">
             <input type="button" id="previous" value="Previous" onclick="previous()">
             <input type="button" id="next" value="Next" onclick="next()">
+            <input type="button" id="last" value="Last" onclick="last()">
         </main>
     </body>
 </html>

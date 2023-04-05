@@ -17,7 +17,7 @@
             $stmt->execute();
             $conn->close();
             //route to the thread page later
-            header("Location: thread.php?id=" . $threadId);
+            header("Location: thread.php?page=-1&id=" . $threadId);
         } else {
             echo "Error: " . $stmt->error;
             $conn->close();
