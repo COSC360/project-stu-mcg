@@ -46,6 +46,7 @@ p{
 
   .threadRight, .replyRight{
     display: inline-block;
+    width: calc(100% - 150px);
   }
 
   .author{
@@ -76,6 +77,7 @@ p{
 .quote{
   border: 1px solid black;
   margin: 0px 10px;
+  padding: 10px;
 }
 
 .quoteAuthor{
