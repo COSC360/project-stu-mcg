@@ -144,5 +144,11 @@ p{
 }
 .threadTitle{
   margin-top: 0px;
+  margin-bottom: 0px;
+}
+
+.threadLastPost{
+  margin-top: 0px;
+  margin-bottom: 0px;
 }
     

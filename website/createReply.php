@@ -44,6 +44,10 @@
 
             // Execute SQL statement and check for errors
             if ($stmt->execute()) {
+                $stmt = $conn->prepare("UPDATE threads SET lastPost = NOW() WHERE threadId = ?");
+                $stmt->bind_param('d', $threadId);
+                $stmt->execute();
+                $conn->close();
                 //route to the thread page later
                 header("Location: thread.php?id=" . $threadId);
             } else {
@@ -54,7 +58,7 @@
             $stmt->bind_param("d", $threadId);
             if ($stmt->execute()) {
                 $result = $stmt->get_result();
-                if(!$thread = $result->fetch_assoc()){
+                if(!($thread = $result->fetch_assoc())){
                     die("thread does not exist");
                 }
             } else {

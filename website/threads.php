@@ -47,6 +47,7 @@
                         threadLeftDiv = $("<div class='threadLeft'></div>");
                         threadRightDiv = $("<div class='threadRight'></div>");
                         threadDiv.append(`<a href='thread.php?id=${thread.threadId}'><h2 class ='threadTitle'>${thread.threadTitle}</h2></a>`);
+                        threadDiv.append(`<h4 class='threadLastPost'>Last post: ${thread.lastPost}</h4>`);
                         threadLeftDiv.append(`<img class='userImg' src='${thread.authorImg}'>`);
                         threadLeftDiv.append(`<p class='author'>${thread.threadAuthor}</p>`);
                         threadRightDiv.append(`<p>${thread.threadText}</p>`);

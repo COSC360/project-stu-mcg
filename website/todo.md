@@ -13,5 +13,5 @@
 ## additional
 - hot threads
 - admin usage stats / charts
-- sort threads by last post not creation
+- ~~sort threads by last post not creation~~
 - reply quotes - could make colapseable
