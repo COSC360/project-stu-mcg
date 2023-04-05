@@ -14,3 +14,4 @@
 - ~~sort threads by last post not creation~~
 - ~~reply quotes~~ - could make colapseable
 - add dates to thread replies
+- add images to threads
