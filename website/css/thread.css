@@ -89,4 +89,27 @@ p{
 
 .quoteCheckDiv{
   float: right;
+  margin-top: auto;
+  margin-bottom: auto;
+  margin-left: auto;
+  display: inline;
+}
+
+.delete{
+  background-color: red;
+  display: inline;
+  padding: 10px 20px;
+  margin-left: 1em;
+  color:white;
+  text-decoration: none;
+  border-radius: 4px;
+  float: right;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.replyBottom{
+  display: flex;
+  width: 100%;
+  float:left;
 }

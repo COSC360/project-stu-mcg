@@ -75,10 +75,15 @@
                         replyRightDiv.append(generateReplyContent(reply.replyText));
                         authorLink = $(`<a href = 'profile.php?user=${reply.replyAuthor}'>`);
                         authorLink.append(replyLeftDiv);
+                        replyBottomDiv = $("<div class='replyBottom'></div>");
+                        replyBottomDiv.append(`<div class='quoteCheckDiv'>Quote:<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]"></div>`)
+                        if($('#isAdmin').val() == 1){
+                            replyBottomDiv.append(`<input class='delete' type='button' value='Delete' onclick='deleteReply(${reply.replyId})'>`)
+                        }
                         replyDiv.append(authorLink);
                         replyDiv.append(replyRightDiv);
-                        replyDiv.append(`<div class='quoteCheckDiv'>Quote:<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]"></div>`)
-                        repliesList.append(replyDiv);
+                        replyDiv.append(replyBottomDiv);
+                        repliesList.append(replyDiv); 
                     });
                     if(threadContent.replies.length > 3){
                         $('#bottomReplyButton').show();
@@ -153,10 +158,11 @@
             </script>
         </head>
         <main>
+            <input type="hidden" id="id" name="id" value="<?php echo($_GET['id'])?>">
             <div id='breadcrum'></div>
             <div id='threadPost' class='thread'></div>
             <form method='post' action ='createReplyForm.php'>
-                <input type="hidden" id="id" name="id" value="<?php echo($_GET['id'])?>">
+                <input type="hidden" id="isAdmin" name="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
                 <?php
                     if(!isset($_GET['id'])){
                         die("null thread");
