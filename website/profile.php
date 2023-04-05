@@ -92,7 +92,7 @@
                     if($username == ($_SESSION['username'])){
                         echo('<form method="post"><button type="submit" class="logout" name="logout">Logout</button></form>');
                         if(isset($_SESSION['banned'])){
-                            echo('<br>You are currently disabled from posting');
+                            echo('<br>Your account has been suspended from posting');
                         }
                     }
                 ?>

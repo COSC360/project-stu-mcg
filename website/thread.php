@@ -163,8 +163,13 @@
                     }
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
+                        if(isset($_SESSION['banned'])){
+                            echo("<div class='replyButton'>");
+                            echo("<h3>Your account has been suspended from posting</h3></div>");
+                        }else{
                         echo("<button type='submit' class='replyButton'>");
                         echo("<h3>Reply to thread</h3></button>");
+                        }
                     }else{
                         echo("<div class='replyButton'>");
                         echo("<h3>Must be logged in to reply</h3></div>");
@@ -175,8 +180,13 @@
                 <?php
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
-                        echo("<button type='submit' class='replyButton' id = 'bottomReplyButton'>");
-                        echo("<h3>Reply to thread</h3></button>");
+                        if(isset($_SESSION['banned'])){
+                            echo("<div class='replyButton'>");
+                            echo("<h3>Your account has been suspended from posting</h3></div>");
+                        }else{
+                            echo("<button type='submit' class='replyButton'>");
+                            echo("<h3>Reply to thread</h3></button>");
+                        }
                     }else{
                         echo("<div class='replyButton' id = 'bottomReplyButton'>");
                         echo("<h3>Must be logged in to reply</h3></div>");
