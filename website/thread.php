@@ -78,35 +78,38 @@
         </head>
         <?php include('header.php'); ?>
         <main>
-        <div id='breadcrum'></div>
-        <div id='threadPost' class='thread'></div>
-            <div class='replyButton'>
+            <div id='breadcrum'></div>
+            <div id='threadPost' class='thread'></div>
+            <form method='post' action ='createReplyForm.php'>
+                <input type="hidden" id="id" name="id" value="<?php echo($_GET['id'])?>">
                 <?php
                     if(!isset($_GET['id'])){
                         die("null thread");
                     }
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
-                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a>");
+                        echo("<button type='submit' class='replyButton'>");
+                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a></button>");
+
                     }else{
-                        echo("<h3>Must be logged in to reply</h3>");
+                        echo("<div class='replyButton'>");
+                        echo("<h3>Must be logged in to reply</h3></div>");
                     }
                 ?>
-            </div>
-            <div id='threadReplies'></div>
-            <div class='replyButton' id = 'bottomReplyButton'>
+                <div id='threadReplies'>
+                </div>
                 <?php
-                    if(!isset($_GET['id'])){
-                        die("null thread");
-                    }
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
-                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a>");
+                        echo("<button type='submit' class='replyButton' id = 'bottomReplyButton'>");
+                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a></button>");
+
                     }else{
-                        echo("<h3>Must be logged in to reply</h3>");
+                        echo("<div class='replyButton' id = 'bottomReplyButton'>");
+                        echo("<h3>Must be logged in to reply</h3></div>");
                     }
                 ?>
-            </div>
+            </form>
             <!-- next and back buttons -->
             <input type="hidden" id="pageNum" value="0">
             <input type="button" id="previous" value="Previous" onclick="previous()">

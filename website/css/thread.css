@@ -23,17 +23,6 @@ p{
     margin-bottom: 5px;
 }
 
-.button {
-    display: inline;
-    padding: 10px 20px;
-    background-color: #ccc;
-    color:#336033;
-    text-decoration: none;
-    border-radius: 4px;
-    float: right;
-    margin: 1em;
-    font-weight: bold;
-  }
   img{
     max-width: 100px;
     max-height: 100px;
@@ -69,7 +58,9 @@ p{
 
 .replyButton{
     background-color: #336033;
-    margin: 0px 40px;
+    margin: 20px 40px;
+    display: block;
+    width: calc(100% - 80px);
 }
  
 .replyButton h3{
