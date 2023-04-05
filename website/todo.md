@@ -1,6 +1,6 @@
 # To DO
 ## baseline
-- admin remove thread reply
+- ~~admin remove thread reply~~
 - ~~add admin diable button on profile page~~
 
 ## minimum functional requirements
