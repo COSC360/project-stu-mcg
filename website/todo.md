@@ -1,11 +1,11 @@
 # To DO
 ## baseline
 - admin remove thread reply
-- add admin diable button on profile page
+- ~~add admin diable button on profile page~~
 
 ## minimum functional requirements
 - change to 2 column layout ? (I don't think she cares)
-- add automatic updates for when other users post
+- ~~add automatic updates for when other users post~~
 - make sure error pages look decent
 
 ## additional

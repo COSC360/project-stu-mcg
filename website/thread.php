@@ -22,7 +22,6 @@
                             if(Date.parse(res.thread.lastPost) > lastUpdate){
                                 displayThread(res)
                             }
-                            lastUpdate = Date.now();
 
                             if($('#pageNum').val() == -1){
                                 $('#pageNum').val(res.pageNumber);
@@ -46,6 +45,7 @@
                             if(intervalId == 0){
                                 intervalId = setInterval(updateThread, 10000)
                             }
+                            lastUpdate = Date.now();
                         }
                     });
                 }
