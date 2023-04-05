@@ -33,9 +33,11 @@
                 }
 
                 function displayThread(threadContent){
+                    $('#breadcrum').empty();
                     $('#breadcrum').append(`<h3><a href="threads.php">Threads</a>/<a href="threads.php?region=${threadContent.thread.region}">${threadContent.thread.region}</a>/${threadContent.thread.threadTitle}</h3>`);
                     threadLeftDiv = $("<div class='threadLeft'></div>");
                     threadRightDiv = $("<div class='threadRight'></div>");
+                    $('#threadPost').empty();
                     $('#threadPost').append(`<h2 class ='threadTitle'>${threadContent.thread.threadTitle}</h2>`);
                     threadLeftDiv.append(`<img class='userImg' src='${threadContent.thread.authorImg}'>`);
                     threadLeftDiv.append(`<p class='author'>${threadContent.thread.threadAuthor}</p>`);
@@ -53,7 +55,7 @@
                         replyLeftDiv.append(`<img class='userImg' src='${reply.authorImg}'>`);
                         replyLeftDiv.append(`<p class='author'>${reply.replyAuthor}</p>`);
                         replyRightDiv.append(generateReplyContent(reply.replyText));
-                        replyRightDiv.append(`<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]">`)
+                        replyRightDiv.append(`Quote:<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]">`)
                         authorLink = $(`<a href = 'profile.php?user=${reply.replyAuthor}'>`);
                         authorLink.append(replyLeftDiv);
                         replyDiv.append(authorLink);
@@ -82,7 +84,7 @@
                         reply.append(quote);
                         $.post("getQuote.php", {replyId: quoteId[0]}, function(res, arguments){
                             reply = JSON.parse(res).reply;
-                            quote.append(`<p>${reply.replyAuthor}:<p>`)
+                            quote.append(`<p class = quoteAuthor>${reply.replyAuthor}:<p>`)
                             quote.append(generateReplyContent(reply.replyText));
                         });
                         quoteEnd = replyText.indexOf(`[/quote=${quoteId}]`);

@@ -33,6 +33,7 @@ p{
     border: 1px solid black;
     display: inline-block;
     margin-right: 10px;
+    vertical-align: top;
   }
 
   .threadLeft img, .replyLeft img{
@@ -74,4 +75,11 @@ p{
 
 .quote{
   border: 1px solid black;
+  margin: 0px 10px;
+}
+
+.quoteAuthor{
+  font-weight: bold;
+  margin: 0px;
+  padding: 0px;
 }
