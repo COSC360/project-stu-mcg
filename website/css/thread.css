@@ -113,3 +113,7 @@ p{
   width: 100%;
   float:left;
 }
+
+.replyDate{
+  font-weight: bold;
+}

@@ -72,6 +72,7 @@
                         replyRightDiv = $("<div class='replyRight'></div>");
                         replyLeftDiv.append(`<img class='userImg' src='${reply.authorImg}'>`);
                         replyLeftDiv.append(`<p class='author'>${reply.replyAuthor}</p>`);
+                        replyRightDiv.append(`<p class = 'replyDate'>On: ${reply.replyDate}:<p>`)
                         replyRightDiv.append(generateReplyContent(reply.replyText));
                         authorLink = $(`<a href = 'profile.php?user=${reply.replyAuthor}'>`);
                         authorLink.append(replyLeftDiv);
@@ -110,7 +111,7 @@
                             if(reply == undefined){
                                 quote.append(`<p>Quoted reply has been deleted by a moderator<p>`)
                             }else{
-                                quote.append(`<p class = quoteAuthor>${reply.replyAuthor}:<p>`)
+                                quote.append(`<p class = quoteAuthor>${reply.replyAuthor} on ${reply.replyDate}:<p>`)
                                 quote.append(generateReplyContent(reply.replyText));
                             }
                         });
