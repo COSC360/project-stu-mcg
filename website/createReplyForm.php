@@ -49,7 +49,13 @@
                 <h3><?php echo($thread['threadAuthor']); ?>:</h3>
                 <p><?php echo($thread['threadText']); ?></p>
                 <label>Reply:</label>
-                <textarea class="field" name="message" rows="10" placeholder="Your reply here"style="display:block"></textarea>
+                <textarea class="field" name="message" rows="10" placeholder="Your reply here"style="display:block"><?php
+                        foreach($_POST['quotes'] as $quote) {
+                            echo('&#13;&#10;');
+                            echo($quote);
+                            echo('&#13;&#10;');
+                        }
+                ?></textarea>
                 <input type="hidden" name="threadId" value="<?php echo($threadId); ?>">
                 <input type="hidden" name="username" value="<?php echo($_SESSION['username']); ?>">
                 <div display="block">

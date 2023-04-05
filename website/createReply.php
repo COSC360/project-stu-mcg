@@ -20,7 +20,7 @@
             header("Location: thread.php?id=" . $threadId);
         } else {
             echo "Error: " . $stmt->error;
+            $conn->close();
         }
     }
-    $conn->close();
 ?>

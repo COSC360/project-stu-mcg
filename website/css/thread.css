@@ -71,3 +71,7 @@ p{
 #breadcrum{
     margin: 20px;
 }
+
+.quote{
+  border: 1px solid black;
+}

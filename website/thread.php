@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html>
     <body>
+    <?php include('header.php'); ?>
         <head>
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/thread.css">
@@ -13,7 +14,6 @@
                 function updateThread(){
                     $.post("getThreadContent.php", {page: $('#pageNum').val(), threadId: <?php echo($_GET['id'])?>}, function(res){
                         res = JSON.parse(res)
-                        console.log(res)
                         if(res.success){
                             displayThread(res);
                         }else{
@@ -52,7 +52,8 @@
                         replyRightDiv = $("<div class='replyRight'></div>");
                         replyLeftDiv.append(`<img class='userImg' src='${reply.authorImg}'>`);
                         replyLeftDiv.append(`<p class='author'>${reply.replyAuthor}</p>`);
-                        replyRightDiv.append(`<p>${reply.replyText}</p>`);
+                        replyRightDiv.append(generateReplyContent(reply.replyText));
+                        replyRightDiv.append(`<input type="checkbox" name="quotes[]" value="[quote=${reply.replyId}]${reply.replyAuthor}: ${removeQuotes(reply.replyText)}[/quote=${reply.replyId}]">`)
                         authorLink = $(`<a href = 'profile.php?user=${reply.replyAuthor}'>`);
                         authorLink.append(replyLeftDiv);
                         replyDiv.append(authorLink);
@@ -66,6 +67,47 @@
                     }
                 }
 
+                function generateReplyContent(replyText){
+                    reply = $('<div></div>');
+                    while(replyText != ''){
+                        quoteStart = replyText.search("\\[quote=([0-9]+)\\]")
+                        if(quoteStart == -1){
+                            reply.append(`<p>${replyText}</p>`);
+                            return reply;
+                        }
+                        reply.append(`<p>${replyText.substring(0, quoteStart)}</p>`);
+                        replyText = replyText.substring(quoteStart);
+                        quoteId = replyText.match("[0-9]+")
+                        let quote = $(`<div class = 'quote'></div>`);
+                        reply.append(quote);
+                        $.post("getQuote.php", {replyId: quoteId[0]}, function(res, arguments){
+                            reply = JSON.parse(res).reply;
+                            quote.append(`<p>${reply.replyAuthor}:<p>`)
+                            quote.append(generateReplyContent(reply.replyText));
+                        });
+                        quoteEnd = replyText.indexOf(`[/quote=${quoteId}]`);
+                        replyText = replyText.substring(quoteEnd + `[/quote=${quoteId}]`.length);
+                    }   
+                    return reply;
+                }
+
+                function removeQuotes(replyText){
+                    reply = '';
+                    while(replyText != ''){
+                        quoteStart = replyText.search("\\[quote=([0-9]+)\\]")
+                        if(quoteStart == -1){
+                            reply += replyText;
+                            return reply;
+                        }
+                        reply += replyText.substring(0, quoteStart);
+                        replyText = replyText.substring(quoteStart);
+                        quoteId = replyText.match("[0-9]+")
+                        quoteEnd = replyText.indexOf(`[/quote=${quoteId}]`);
+                        replyText = replyText.substring(quoteEnd + `[/quote=${quoteId}]`.length);
+                    }   
+                    return reply
+                }
+
                 function next(){
                     $('#pageNum').val($('#pageNum').val() + 1);
                     updateThread();
@@ -76,7 +118,6 @@
                 }
             </script>
         </head>
-        <?php include('header.php'); ?>
         <main>
             <div id='breadcrum'></div>
             <div id='threadPost' class='thread'></div>
@@ -89,8 +130,7 @@
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
                         echo("<button type='submit' class='replyButton'>");
-                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a></button>");
-
+                        echo("<h3>Reply to thread</h3></button>");
                     }else{
                         echo("<div class='replyButton'>");
                         echo("<h3>Must be logged in to reply</h3></div>");
@@ -102,8 +142,7 @@
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
                         echo("<button type='submit' class='replyButton' id = 'bottomReplyButton'>");
-                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a></button>");
-
+                        echo("<h3>Reply to thread</h3></button>");
                     }else{
                         echo("<div class='replyButton' id = 'bottomReplyButton'>");
                         echo("<h3>Must be logged in to reply</h3></div>");
