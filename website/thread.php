@@ -107,8 +107,12 @@
                         reply.append(quote);
                         $.post("getQuote.php", {replyId: quoteId[0]}, function(res, arguments){
                             reply = JSON.parse(res).reply;
-                            quote.append(`<p class = quoteAuthor>${reply.replyAuthor}:<p>`)
-                            quote.append(generateReplyContent(reply.replyText));
+                            if(reply == undefined){
+                                quote.append(`<p>Quoted reply has been deleted by a moderator<p>`)
+                            }else{
+                                quote.append(`<p class = quoteAuthor>${reply.replyAuthor}:<p>`)
+                                quote.append(generateReplyContent(reply.replyText));
+                            }
                         });
                         quoteEnd = replyText.indexOf(`[/quote=${quoteId}]`);
                         replyText = replyText.substring(quoteEnd + `[/quote=${quoteId}]`.length);
@@ -155,14 +159,22 @@
                     lastUpdate = 0
                     updateThread();
                 }
+
+                function deleteReply(replyId){
+                    console.log(replyId)
+                    $.post("deleteReply.php", {replyId: replyId}, function(){
+                        lastUpdate = 0;
+                        updateThread();
+                    });
+                }
             </script>
         </head>
         <main>
-            <input type="hidden" id="id" name="id" value="<?php echo($_GET['id'])?>">
             <div id='breadcrum'></div>
             <div id='threadPost' class='thread'></div>
             <form method='post' action ='createReplyForm.php'>
                 <input type="hidden" id="isAdmin" name="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
+                <input type="hidden" id="id" name="id" value="<?php echo($_GET['id'])?>">
                 <?php
                     if(!isset($_GET['id'])){
                         die("null thread");
@@ -187,10 +199,10 @@
                     $threadId = $_GET['id'];
                     if(isset($_SESSION['username'])){
                         if(isset($_SESSION['banned'])){
-                            echo("<div class='replyButton'>");
+                            echo("<div class='replyButton' id = 'bottomReplyButton'>");
                             echo("<h3>Your account has been suspended from posting</h3></div>");
                         }else{
-                            echo("<button type='submit' class='replyButton'>");
+                            echo("<button type='submit' class='replyButton' id = 'bottomReplyButton'>");
                             echo("<h3>Reply to thread</h3></button>");
                         }
                     }else{
