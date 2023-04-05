@@ -8,7 +8,6 @@
         <?php include('header.php'); ?>
         <main>
             <div class="mainDiv">
-
                 <?php 
                     if(isset($_GET['user'])){
                         $username = $_GET['user'];
@@ -28,6 +27,8 @@
                         if($user = $result->fetch_assoc()){
                             $bio = $user['bio'];
                             $location = $user['location'];
+                            $isAdmin = $user['isAdmin'];
+                            $enabled = $user['enabled'];
                             if($location == ""){
                                 $location = "Unknown";
                             }
@@ -90,6 +91,20 @@
                     }
                     if($username == ($_SESSION['username'])){
                         echo('<form method="post"><button type="submit" class="logout" name="logout">Logout</button></form>');
+                    }
+                ?>
+
+                <?php
+                    if(isset($_SESSION['isAdmin'])){
+                        echo ("<br><form action='changeState.php' method='POST'>");
+                        echo ("<input type='hidden' name='username' value='".$username."'>");
+                        echo ("<input type='hidden' name='enabled' value='".$enabled."'>"); 
+                        if($isAdmin == 0){
+                            echo ("<input type='submit' value='".($enabled == 0 ? 'Disable': 'Enable')."'>");
+                        }else{
+                            echo("Admin");
+                        }
+                        echo "</form>";
                     }
                 ?>
             </div>

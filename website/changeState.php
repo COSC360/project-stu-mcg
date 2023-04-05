@@ -12,7 +12,7 @@ if (isset($_POST['username']) && isset($_POST['enabled'])) {
     $stmt->bind_param("ds", $newState,$username);
 
     if ($stmt->execute()) {
-        header("Location: admin.php");
+        header("Location: " . $_SERVER['HTTP_REFERER']);
     }
     else{
         echo "Error: " . $stmt->error;
