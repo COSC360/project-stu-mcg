@@ -1,7 +1,5 @@
 # To DO
 ## baseline
-
-- search by thread reply text
 - admin remove thread reply
 - add admin diable button on profile page
 
@@ -15,3 +13,4 @@
 - admin usage stats / charts
 - ~~sort threads by last post not creation~~
 - reply quotes - could make colapseable
+- add dates to thread replies

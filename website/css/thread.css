@@ -40,11 +40,20 @@ p{
   }
 
   .threadLeft, .replyLeft{
-    padding: 5px;
+    width: 120px;
     border: 1px solid black;
     display: inline-block;
     margin-right: 10px;
   }
+
+  .threadLeft img, .replyLeft img{
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
   .threadRight, .replyRight{
     display: inline-block;
   }

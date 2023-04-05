@@ -59,6 +59,11 @@
                         replyDiv.append(replyRightDiv);
                         repliesList.append(replyDiv);
                     });
+                    if(threadContent.replies.length > 3){
+                        $('#bottomReplyButton').show();
+                    }else{
+                        $('#bottomReplyButton').hide();
+                    }
                 }
 
                 function next(){
@@ -89,6 +94,19 @@
                 ?>
             </div>
             <div id='threadReplies'></div>
+            <div class='replyButton' id = 'bottomReplyButton'>
+                <?php
+                    if(!isset($_GET['id'])){
+                        die("null thread");
+                    }
+                    $threadId = $_GET['id'];
+                    if(isset($_SESSION['username'])){
+                        echo("<a href='createReply.php?id=" . $threadId . "'><h3>Reply to thread</h3></a>");
+                    }else{
+                        echo("<h3>Must be logged in to reply</h3>");
+                    }
+                ?>
+            </div>
             <!-- next and back buttons -->
             <input type="hidden" id="pageNum" value="0">
             <input type="button" id="previous" value="Previous" onclick="previous()">

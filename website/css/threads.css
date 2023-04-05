@@ -122,17 +122,23 @@ p{
     margin-top: 2.5em;
     margin-left: 1em;
   }
-  img{
-    max-width: 100px;
-    max-height: 100px;
-  }
 
   .threadLeft{
+    width: 120px;
     padding: 5px;
     border: 1px solid black;
     display: inline-block;
     margin-right: 10px;
   }
+
+  .threadLeft img{
+    margin: auto;
+    display: block;
+    margin-top: 10px;
+    max-width: 100px;
+    max-height: 100px;
+  }
+
   .threadRight{
     display: inline-block;
   }
