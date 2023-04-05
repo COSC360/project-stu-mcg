@@ -60,7 +60,7 @@
                         threadDiv.append(authorLink);
                         threadDiv.append(threadRightDiv);
                         if($('#isAdmin').val() == 1){
-                            threadDiv.append(`<input class='delete' type='button' value='Delete' onclick='deleteThread(${thread.threadId})'>`)
+                            threadDiv.append(`<div class = 'threadBottom'><input class='delete' type='button' value='Delete' onclick='deleteThread(${thread.threadId})'></div>`)
                         }
                         threadsList.append(threadDiv);
                     });

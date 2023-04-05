@@ -3,6 +3,7 @@
     padding: 10px; 
     margin: 20px;
     background-color: white;
+    overflow: auto;
 }
 .search h1{
     display: inline;
@@ -141,6 +142,7 @@ p{
 
   .threadRight{
     display: inline-block;
+    vertical-align: top;
   }
 
   .author{
@@ -156,5 +158,11 @@ p{
 .threadLastPost{
   margin-top: 0px;
   margin-bottom: 0px;
+}
+
+.threadBottom{
+  display: block;
+  width: 100%;
+  float:left;
 }
     
