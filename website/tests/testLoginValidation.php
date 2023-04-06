@@ -30,12 +30,11 @@ function validateCredentials($login, $password) { // mock validation function fr
     } else {
         return "Error: " . $stmt->error;
     }
-    $conn->close();
 }
 
 class PasswordEncryptionTest extends \PHPUnit\Framework\TestCase
 {
-    public function testPasswordEncryption()
+    public function testLoginValidation()
     {
         $login = "testuser";
         $password = "testpassword";
@@ -45,5 +44,4 @@ class PasswordEncryptionTest extends \PHPUnit\Framework\TestCase
         $this->assertEquals($result, "Incorrect username or password"); //Can't login with incorrect credentials, correct error msg displayed
     }
 }
-
 ?>
