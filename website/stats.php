@@ -74,9 +74,9 @@ $conn->close();
   </head>
   <?php include('header.php'); ?>
   <?php
-            if(!isset($_SESSION['isAdmin'])){
-                die("Must be signed in as admin user to view this page");
-            }
+    if(!isset($_SESSION['isAdmin'])){
+        die("Must be signed in as admin user to view this page");
+    }
   ?>
   <body>
     <div id="chart"></div>

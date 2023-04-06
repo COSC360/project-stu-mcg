@@ -5,9 +5,15 @@
     justify-content: center;
     align-items: center;
     background: white;
+    margin: 0;
+    padding: 0;
 }
-
+#chart{
+    margin-top: 3em;
+}
 h2{
+    margin: 0;
+    padding-bottom: 1em;
     text-align: center;
     background-color: white;
 }
