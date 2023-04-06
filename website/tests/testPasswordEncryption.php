@@ -1,6 +1,6 @@
 <?php
-function validate_user_credentials($login, $password) { // mock validation function from login file
-    $conn = include('./../dbConnection.php');
+function validateCredentials($login, $password) { // mock validation function from login file
+    include('../dbConnection.php');
 
     $stmt = $conn->prepare("SELECT * FROM users WHERE (email = ? OR username = ?) AND password = ?");
     $encrypedPW = md5($password);
@@ -30,7 +30,6 @@ function validate_user_credentials($login, $password) { // mock validation funct
     } else {
         return "Error: " . $stmt->error;
     }
-
     $conn->close();
 }
 
@@ -41,9 +40,9 @@ class PasswordEncryptionTest extends \PHPUnit\Framework\TestCase
         $login = "testuser";
         $password = "testpassword";
 
-        $result = validate_user_credentials($login, $password);
+        $result = validateCredentials($login, $password);
 
-        $this->assertEquals($result, "Incorrect username or password"); //Can't login with incorrect credentials
+        $this->assertEquals($result, "Incorrect username or password"); //Can't login with incorrect credentials, correct error msg displayed
     }
 }
 

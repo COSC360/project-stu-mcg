@@ -13,6 +13,7 @@ while ($row = $result->fetch_assoc() ) {
   $data[] = array($row['region'], (int)$row['num_threads']);
 }
 $json_data = json_encode($data);
+$conn->close();
 ?>
 <html>
   <head>
