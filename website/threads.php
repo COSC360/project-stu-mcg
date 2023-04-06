@@ -17,7 +17,7 @@
                 }
 
                 function updateThreads(){
-                    console.log('update')
+                    console.log('update');
                     $.post("getThreads.php", {page: $('#pageNum').val(), search: $('#searchbar').val(), region: $('#regionSelect').val()}, function(result){
                         result = JSON.parse(result)
                         if(result.success){
@@ -82,8 +82,11 @@
                 }
             </script>
         </head>
-
-        <?php include('header.php'); ?>
+        <?php 
+        ob_start();
+        include('header.php'); 
+        ob_end_flush();
+        ?>
         <main>
             <div>
                 <input type = "hidden" id="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">
@@ -117,10 +120,9 @@
                             echo "Error: " . $stmt->error;
                         }
                         $conn->close();
-                        echo('<option value="all">all</option>');
                         foreach($regions as $region){
-                            if($selectedRegion && $selectedRegion == $region){
-                                echo('<option value="'. $region .'" selected="selected">' . $region .'</option>');
+                            if($selectedRegion == $region){
+                                echo('<option value="'. $region .'" selected>' . $region .'</option>');
                             }else{
                                 echo('<option value="'. $region .'">' . $region .'</option>');
                             }

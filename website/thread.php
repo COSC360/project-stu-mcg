@@ -1,7 +1,11 @@
 <!DOCTYPE html>
 <html>
     <body>
-    <?php include('header.php'); ?>
+        <?php 
+        ob_start();
+        include('header.php'); 
+        ob_end_flush();
+        ?>        
         <head>
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/thread.css">

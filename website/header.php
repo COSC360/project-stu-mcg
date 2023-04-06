@@ -2,7 +2,7 @@
 <head>
 <link rel="stylesheet" href="css/header.css">
 </head>
-<?php session_start(); //since header is included on all pages this the only place i need to start session?> 
+<?php session_start(); ?> 
 <header class="header">
     <a href="threads.php"><img  class = "logo" src="img/logo1.png"></a>
     <ul class="main-nav">
@@ -10,6 +10,7 @@
             if(isset($_SESSION['isAdmin'])){
                 echo '<li><a href="threads.php">Manage Threads</a></li>';
                 echo '<li><a href="admin.php">Manage Users</a></li>';
+                echo '<li><a href="stats.php">Analytics</a></li>';
             }
             else{
                 echo '<li><a href="threads.php">Threads</a></li>';

@@ -53,10 +53,10 @@ a {
     background-color: #ADB7AD;
     box-shadow: 0px 0px 14px 0px rgba(0,0,0,0.75);
 }
-img.logo{
-    width: 180px;
-    height: 50px;
-    padding-left: .5em;
+img.logo {
+    width: 180px !important;
+    height: 50px !important;
+    padding-left: .5em !important;
 }
 
 @media (min-width: 769px) {

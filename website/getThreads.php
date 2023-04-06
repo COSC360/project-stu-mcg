@@ -5,7 +5,7 @@
     $region = $_POST['region'];
     include("dbConnection.php");
     $offset = $pageNumber * 10;
-    if($region == 'all'){
+    if($region == 'All'){
         $stmt = $conn->prepare("SELECT * FROM threads WHERE threadTitle LIKE ? OR threadAuthor LIKE ? OR threadText like ? ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
         $stmt->bind_param("sssd", $search, $search, $search, $offset);
     }else{
