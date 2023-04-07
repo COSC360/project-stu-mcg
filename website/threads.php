@@ -1,6 +1,11 @@
 <!DOCTYPE html>
 <html>
     <body>
+        <?php 
+        ob_start();
+        include('header.php'); 
+        ob_end_flush();
+        ?>
         <head>
             <link rel="stylesheet" href="css/all.css">
             <link rel="stylesheet" href="css/threads.css">
@@ -84,11 +89,6 @@
                 }
             </script>
         </head>
-        <?php 
-        ob_start();
-        include('header.php'); 
-        ob_end_flush();
-        ?>
         <main>
             <div>
                 <input type = "hidden" id="isAdmin" value="<?php echo(isset($_SESSION['isAdmin']))?>">

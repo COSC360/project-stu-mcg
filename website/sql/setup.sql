@@ -63,4 +63,4 @@ CREATE TABLE images (
 -- admin user
 INSERT INTO users VALUES ('admin', 'admin@email.com', MD5('password'), "", "", '1', '0');
 -- user user
-INSERT INTO users VALUES ('user', 'user@email.com', MD5('password'), "", "", '1', '0');
+INSERT INTO users VALUES ('user', 'user@email.com', MD5('password'), "", "", '0', '0');
