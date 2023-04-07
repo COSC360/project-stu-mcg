@@ -13,6 +13,8 @@
 
                 function updateSearch(){
                     $('#pageNum').val(0)
+                    lastUpdate = 0;
+                    threadsList.empty();
                     updateThreads();
                 }
 
