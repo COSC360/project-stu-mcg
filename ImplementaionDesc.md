@@ -1,8 +1,8 @@
 # Description of Implementation
 
-## Header
+## Header (header.php)
 
-## Signup ()
+## Signup/Login (login.php, signup.php, banned.php)
 
 images stuff - mac will do the rest: The image upload is first validated via javascript to ensure the file is an image file. When the page receives a POST request it checks to see if an image was uploaded. If so it saves the image on the server in the userImages folder with the filename being the user's username. Anytime a user image is displayed on the site, a page will search the userImages folder for a filename matching the user's username and then display that image. If no image is found then a default image is displayed.
 
@@ -18,4 +18,4 @@ This page (threads.php) acts as the main page for the site and is implemented as
 
 thread.php works in a very similar way to threads.php. It displays the content of a thread along with a list of the thread's replies in order 10 at a time. It uses a function updateThread() which asycronously requests getThreadContent.php via POST and then updates the list of replys. It also asyncronously updates replies every 10 seconds so that new replies from other users show up automatically much like the threads page. The reply button works with createReply.php in the same way as createThread.php and the flow of requesting replies and displaing navigation buttons works the same way as threads.php with getThreads.php. There are also reply delete buttons which asyncronously request deleteReply.php in the same way that threads are deleted. The differences between the pages are that thread.php does not have any search functionality within a thread, thread replies and thread replies implement a quote system. The quote sysyem allows users to reference other replies in their reply via quotes. Each reply has a checkbox to sepcify if a user wants to imbed a quote of that reply in their reply. When a request is sent to createReply via POST an array of all checked reply id's is sent. embed tags for the quoted replies are then added automatically to the reply textbox. The reply embed tags are then stored within the text of the reply in the database. When replies are rendered via jQuerry, the reply text is parsed for any quote embed tags. The tags are then replaced in the reply content with a div which contains the content of the quoted reply which is accessed from the database via another asycronous POST request to getQuote.php. This process is recursive so if the quoted reply also includes quotes, those are rendered as well.
 
-## Admin
+## Admin (admin.php, stats.php, changeState.php)
