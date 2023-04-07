@@ -2,6 +2,12 @@
 
 ### Mac Vibert and Stu McGorman
 
+## Final submission
+
+[User Walkthrough](userWalkthrough.pdf)
+
+[Implementation Description](implementationDesc.md)
+
 ## Milestone 2
 
 [click here](pages.md)
