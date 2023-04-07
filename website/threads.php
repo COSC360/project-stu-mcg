@@ -12,6 +12,7 @@
             <script src="https://code.jquery.com/jquery-3.6.4.min.js" integrity="sha256-oP6HI9z1XaZNBrJURtCoUT5SUnxFr8s3BzRl+cbzUq8=" crossorigin="anonymous"></script>
             <script>
                 lastUpdate = 0;
+                intervalId = 0
                 $(document).ready(function(){
                     updateThreads()
                 })
@@ -42,6 +43,10 @@
                         {
                             $('#previous').hide()
                             $('#first').hide()
+                            if(intervalId == 0){
+                                intervalId = setInterval(updateThread, 10000)
+                            }
+                            lastUpdate = Date.now();
                         } else {
                             $('#previous').show()
                             $('#first').show()
@@ -82,11 +87,15 @@
 
                 function next(){
                     $('#pageNum').val($('#pageNum').val() + 1);
+                    clearInterval(intervalId)
+                    intervalId = 0
                     lastUpdate = 0;
                     updateThreads();
                 }
                 function last(){
                     $('#pageNum').val(-1);
+                    clearInterval(intervalId)
+                    intervalId = 0
                     lastUpdate = 0;
                     updateThreads();
                 }
