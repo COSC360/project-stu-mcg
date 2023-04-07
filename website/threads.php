@@ -31,6 +31,9 @@
                             if(Date.parse(result.threads[0].lastPost) > lastUpdate){
                                 displayThreads(result.threads)
                             }
+                            if($('#pageNum').val() == -1){
+                                $('#pageNum').val(result.pageNumber);
+                            }
                             lastUpdate = Date.now();
                         }else{
                             console.log('error');
@@ -38,13 +41,17 @@
                         if($('#pageNum').val() == 0)
                         {
                             $('#previous').hide()
+                            $('#first').hide()
                         } else {
                             $('#previous').show()
+                            $('#first').show()
                         }
                         if(result.more){
                             $('#next').show()
+                            $('#last').show()
                         } else {
                             $('#next').hide()
+                            $('#last').hide()
                         }
                     });
                 }
@@ -75,15 +82,27 @@
 
                 function next(){
                     $('#pageNum').val($('#pageNum').val() + 1);
+                    lastUpdate = 0;
+                    updateThreads();
+                }
+                function last(){
+                    $('#pageNum').val(-1);
+                    lastUpdate = 0;
                     updateThreads();
                 }
                 function previous(){
                     $('#pageNum').val($('#pageNum').val() - 1);
+                    lastUpdate = 0;
                     updateThreads();
                 }
-
+                function first(){
+                    $('#pageNum').val(0);
+                    lastUpdate = 0
+                    updateThreads();
+                }
                 function deleteThread(threadId){
                     $.post("deleteThread.php", {threadId: threadId}, function(){
+                        lastUpdate = 0;
                         updateThreads();
                     });
                 }
@@ -143,8 +162,10 @@
             <div id='threadsList'></div>
             <!-- next and back buttons -->
             <input type="hidden" id="pageNum" value="0">
+            <input type="button" id="first" value="First" onclick="first()">
             <input type="button" id="previous" value="Previous" onclick="previous()">
             <input type="button" id="next" value="Next" onclick="next()">
+            <input type="button" id="last" value="Last" onclick="last()">
         </main>
     </body>
 </html>

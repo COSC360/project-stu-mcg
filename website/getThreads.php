@@ -4,6 +4,21 @@
     $search = "%".$search."%";
     $region = $_POST['region'];
     include("dbConnection.php");
+    $jsonResult = new stdClass();
+    if($pageNumber == -1){
+        if($region == 'All'){
+            $stmt = $conn->prepare("SELECT COUNT(*) AS numThreads FROM threads WHERE threadTitle LIKE ? OR threadAuthor LIKE ? OR threadText like ? ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
+            $stmt->bind_param("sssd", $search, $search, $search, $offset);
+        }else{
+            $stmt = $conn->prepare("SELECT COUNT(*)AS numThreads FROM threads WHERE region = ? AND (threadTitle LIKE ? OR threadAuthor LIKE ? OR threadText like ?) ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
+            $stmt->bind_param("ssssd", $region, $search, $search, $search, $offset);
+        }
+        $stmt->execute();
+        $result = $stmt->get_result();
+        $count = $result->fetch_assoc()['numThreads'];
+        $pageNumber = floor(($count - 1)/10);
+        $jsonResult->pageNumber = $pageNumber;
+    }
     $offset = $pageNumber * 10;
     if($region == 'All'){
         $stmt = $conn->prepare("SELECT * FROM threads WHERE threadTitle LIKE ? OR threadAuthor LIKE ? OR threadText like ? ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
@@ -12,8 +27,6 @@
         $stmt = $conn->prepare("SELECT * FROM threads WHERE region = ? AND (threadTitle LIKE ? OR threadAuthor LIKE ? OR threadText like ?) ORDER BY lastPost DESC LIMIT 11 OFFSET ?");
         $stmt->bind_param("ssssd", $region, $search, $search, $search, $offset);
     }
-
-    $jsonResult = new stdClass();
     if ($stmt->execute()) {
         $result = $stmt->get_result();
         $count = 0;
