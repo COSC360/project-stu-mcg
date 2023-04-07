@@ -106,7 +106,7 @@
                 <label for="region">Region:</label>
                 <select name="region" id="regionSelect" onchange="updateSearch()">
                    <?php
-                        $selectedRegion = false;
+                        $selectedRegion = 'all';
                         if(isset($_GET['region'])){
                             $selectedRegion = $_GET['region'];
                         }
@@ -122,6 +122,11 @@
                             echo "Error: " . $stmt->error;
                         }
                         $conn->close();
+                        if($selectedRegion == 'all'){
+                            echo('<option value="All" selected>All</option>');
+                        }else{
+                            echo('<option value="All">All</option>');
+                        }
                         foreach($regions as $region){
                             if($selectedRegion == $region){
                                 echo('<option value="'. $region .'" selected>' . $region .'</option>');
