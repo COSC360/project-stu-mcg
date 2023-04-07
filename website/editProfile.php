@@ -24,7 +24,7 @@
 			$location = $_POST["location"];
 
             //upload profile image
-            if(isset($_FILES['profileImage'])){
+            if(is_uploaded_file($_FILES['profileImage']["tmp_name"])){
                 $ext = pathinfo($_FILES['profileImage']["name"], PATHINFO_EXTENSION);
                 $files = glob("userImages/".$username.".*");
                 foreach($files as $file){
