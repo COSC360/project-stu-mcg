@@ -4,14 +4,12 @@
 - ~~add admin diable button on profile page~~
 
 ## minimum functional requirements
-- change to 2 column layout ? (I don't think she cares)
 - ~~add automatic updates for when other users post~~
-- make sure error pages look decent
 
 ## additional
 - hot threads
-- admin usage stats / charts
+~~- admin usage stats / charts~~
 - ~~sort threads by last post not creation~~
 - ~~reply quotes~~ - could make colapseable
-- add dates to thread replies
+~~- add dates to thread replies~~
 - add images to threads
